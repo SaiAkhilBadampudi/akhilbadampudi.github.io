@@ -1,225 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name | Data Engineer Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rama Venkata Sai | Data Engineer Portfolio</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;400&display=swap" rel="stylesheet" />
   <style>
     :root {
       --primary: #4455ab;
-      --background: #f8f9fa;
       --accent: #e9ecef;
       --text: #222;
+      --background: #f8f9fa;
+      --highlight: #fffbe8;
+      --light-blue: #8fc6fa;
     }
     [data-theme="dark"] {
-      --primary: #6a88d1;
-      --background: #181a1b;
+      --primary: #61a2ff;
       --accent: #222;
+      --background: #181a1b;
       --text: #f8f9fa;
+      --highlight: #181a1b;
+      --light-blue: #387ff6;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
     }
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
       background: var(--background);
       color: var(--text);
       transition: background 0.3s, color 0.3s;
     }
-    .container { max-width: 940px; margin: auto; padding: 2rem; }
+    .nav {
+      position: sticky;
+      top: 0;
+      background: var(--background);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      border-bottom: 1px solid var(--accent);
+      z-index: 10;
+      padding: 0.6rem 0;
+    }
+    .nav a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1.1rem;
+      border-radius: 5px;
+      transition: background 0.14s, color 0.2s;
+    }
+    .nav a.active, .nav a:hover {
+      background-color: var(--highlight);
+      color: #9456c6;
+    }
+    .container { max-width: 960px; margin: auto; padding: 2rem; }
     header {
-      display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 1px solid var(--accent); padding-bottom: 1rem; margin-bottom: 1.2rem; flex-wrap: wrap;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      margin-bottom: 1.2rem;
+      text-align: center;
     }
     .profile-photo-wrapper {
-      width: 140px; height: 140px; overflow: hidden;
-      border-radius: 50%; border: 4px solid var(--primary);
-      margin: 0 auto 1rem 0;
+      width: 148px; height: 148px; overflow: hidden;
+      border-radius: 50%; border: 5px solid var(--primary);
+      margin: 0 auto 1rem auto; box-shadow: 0 4px 20px rgba(68,85,171,0.07);
+      background: var(--accent);
     }
-    .profile-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .about { text-align: center; max-width: 700px; margin: 2.5rem auto 2rem auto; }
+    .profile-photo {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .animated-name {
+      display: inline-block;
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #e38ceb, #61a2ff 70%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: highlightPop 1.4s cubic-bezier(.2,2,.2,1) 0s 1;
+      transition: text-shadow 0.3s;
+    }
+    @keyframes highlightPop {
+      0% { letter-spacing: -0.25em; opacity: 0.1; filter: blur(8px);}
+      60% { letter-spacing: 0.04em; opacity: 1; filter: blur(0);}
+      100% { letter-spacing: 0;}
+    }
+    .animated-role {
+      font-size: 1.32rem;
+      font-weight: bold;
+      color: var(--primary);
+      background: var(--light-blue);
+      display: inline-block;
+      padding: 0.27em 1.2em;
+      border-radius: 1.9em;
+      margin: 0.8em 0 0.5em 0;
+      box-shadow: 0 2px 12px rgba(68,85,171,0.06);
+      animation: fadeinRole 2s cubic-bezier(.15,1.1,.3,1.1);
+    }
+    @keyframes fadeinRole {
+      0% { opacity: 0; transform: translateY(-35px);}
+      70% { opacity: 1; transform: translateY(3px);}
+      100% { opacity: 1;}
+    }
+    .about { max-width: 700px; margin:2.7rem auto 2rem auto; font-size:1.15rem;}
     .contact-links a {
-      margin: 0 8px; text-decoration: none; color: var(--primary); font-weight: 500;
+      margin: 0 9px; text-decoration: none; color: var(--primary); font-weight: 500; font-size:1.06em;
     }
-    .skills-section { margin: 2.2rem auto 2.5rem auto; max-width: 740px; text-align: center; }
+    .theme-toggle {
+      cursor: pointer; background: none; border: none; font-size: 1.6em; color: var(--primary); 
+      margin-left: auto; margin-top:-2rem; margin-bottom: 1.2rem;
+      align-self: flex-end; border-radius: 4px; transition: background 0.15s;
+      padding: 0.15em 0.35em;
+    }
+    .theme-toggle:hover { background: var(--accent);}
+    .skills-section { margin: 2.8rem auto 2.8rem auto; max-width: 760px; text-align: center; }
     .skills-icons {
-      display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 18px; margin-top: 1.2rem;
+      display: flex; flex-wrap: wrap; justify-content:center; align-items: center;
+      gap: 18px; margin-top: 1.2rem;
     }
     .skills-icons img {
-      width: 44px; height: 44px; object-fit: contain; background: #fff;
-      border-radius: 10px; border: 1px solid #e1e6ef; padding: 3px;
-      box-shadow: 0 2px 8px rgba(68,85,171,0.07);
+      width: 44px; height: 44px; object-fit: contain; background: #fff; border-radius: 10px;
+      border: 1px solid #e1e6ef; padding: 4px; box-shadow: 0 2px 8px rgba(68,85,171,0.07);
+      background: var(--accent);
+      transition: box-shadow 0.15s, transform 0.13s;
+    }
+    .skills-icons img:hover {
+      box-shadow: 0 6px 20px rgba(80, 120, 220, 0.12);
+      transform: scale(1.11) rotate(-8deg);
     }
     .timeline {
-      position: relative; max-width: 850px; margin: 3rem auto 2.4rem auto;
+      position: relative; max-width: 860px; margin: 3.3rem auto 2.6rem auto;
     }
     .timeline::before {
       content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
       width: 3px; background: var(--primary); opacity: 0.15; transform: translateX(-50%);
     }
     .timeline-entry {
-      position: relative; width: 50%; padding: 1rem 2.1rem; box-sizing: border-box;
+      position: relative; width: 50%; padding: 1rem 2.15rem; box-sizing: border-box;
+      z-index: 2; min-height: 168px;
     }
-    .timeline-entry.left { left: 0; text-align: right; }
-    .timeline-entry.right { left: 50%; text-align: left; }
+    .timeline-entry.left { left: 0; text-align: right;}
+    .timeline-entry.right { left: 50%; text-align: left;}
     .timeline-entry .content {
-      background: var(--accent); border-radius: 10px; padding: 1.2rem 1.3rem;
+      background: var(--accent); border-radius: 11px; padding: 1.1rem 1.2rem;
       box-shadow: 0 2px 8px rgba(0,0,0,0.045); position: relative;
-      min-width: 240px; display: inline-block; font-size: 1.04em;
+      min-width: 205px; display: inline-block; font-size: 1.03em;
     }
     .timeline-entry.left .content::after {
-      content: ''; position: absolute; right: -10px; top: 20px;
+      content: ''; position: absolute; right: -10px; top: 22px;
       border-width: 7px; border-style: solid;
       border-color: transparent transparent transparent var(--accent);
     }
     .timeline-entry.right .content::after {
-      content: ''; position: absolute; left: -10px; top: 20px;
+      content: ''; position: absolute; left: -10px; top: 22px;
       border-width: 7px; border-style: solid;
       border-color: transparent var(--accent) transparent transparent;
     }
-    .timeline-entry .date-range { font-size: 0.97em; color: #7b87a0; font-style: italic; }
-    .timeline-entry .org { font-size: 1em; font-weight: 600; color: var(--primary); }
-    .projects {
-      display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 1.2rem;
+    .timeline-entry .date-range {
+      font-size: 0.96em; color: #7b87a0; font-style: italic;
+      display:flex; align-items:center; gap:0.5em; margin-bottom:0.2em;
     }
+    .timeline-entry .org {
+      font-size: 1em; font-weight: 600; color: var(--primary); display: flex; align-items:center; gap:0.5em;
+    }
+    .timeline-entry .org img {
+      width: 26px; height: 26px; vertical-align:middle; background:transparent; margin-right:2px;
+      border-radius: 4px; box-shadow:0 2px 6px rgba(80,80,120,0.08);
+    }
+    .projects { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 1.24rem; }
     .card {
       background: var(--accent); border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 1.5rem;
-      transition: transform 0.15s, box-shadow 0.15s; cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 1.38rem; transition: transform 0.12s, box-shadow 0.12s;
+      cursor: pointer;
     }
     .card:hover {
-      transform: translateY(-4px) scale(1.025);
-      box-shadow: 0 6px 14px rgba(68,85,171,0.09);
+      transform: translateY(-4px) scale(1.020);
+      box-shadow: 0 6px 14px rgba(68,85,171,0.11);
     }
     .card-title { margin-top: 0; color: var(--primary); margin-bottom: 0.5rem; }
-    .toggle-btn {
-      cursor: pointer; background: none; border: none; font-size: 1.25em;
-      color: var(--primary); margin-left: 1rem; border-radius: 5px;
-      transition: background 0.2s; padding: 3px 8px;
-    }
-    .toggle-btn:hover { background: var(--accent); }
-    footer {
-      text-align: center; font-size: 0.98em; margin-top: 2.2rem; color: #888;
-    }
-    @media (max-width:900px) { .container { padding: 1rem; } .timeline { max-width: 99vw; } }
-    @media (max-width:700px) {
-      header { flex-direction: column; gap: 1rem; }
-      .timeline-entry, .timeline-entry.left, .timeline-entry.right { width: 100%; left: 0; text-align: left; padding: 1.1rem 0.7rem; }
-      .timeline::before { left: 22px; }
-      .timeline-entry .content, .timeline-entry.left .content, .timeline-entry.right .content { min-width: 0; width: 95%; }
-      .timeline-entry .content::after, .timeline-entry.left .content::after, .timeline-entry.right .content::after { display: none; }
+    .footer { text-align: center; font-size: 0.97em; margin: 2.6rem 0 0 0; color: #888; }
+    @media (max-width:1030px) { .container { padding: 1rem; } .timeline { max-width: 99vw; } }
+    @media (max-width:730px) {
+      header { padding-top: 1rem; }
+      .nav { gap: 0.5rem; font-size: 1em; flex-wrap:wrap;}
+      .timeline-entry, .timeline-entry.left, .timeline-entry.right { width: 100%; left: 0; text-align: left; padding: 1.18rem 0.7rem;}
+      .timeline::before { left: 22px;}
+      .timeline-entry .content, .timeline-entry.left .content, .timeline-entry.right .content { min-width: 0; width: 95%;}
+      .timeline-entry .content::after, .timeline-entry.left .content::after, .timeline-entry.right .content::after { display: none;}
     }
   </style>
 </head>
 <body>
+  <nav class="nav" id="nav">
+    <a href="#about" class="active">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">🌙</button>
+  </nav>
   <div class="container">
     <header>
-      <div style="display: flex; align-items: center; gap: 1.2rem;">
-        <div class="profile-photo-wrapper">
-          <img src="profile-photo.jpg" alt="Your Name Photo" class="profile-photo">
-        </div>
-        <div>
-          <h1 style="margin: 0 0 0.3rem 0;">Your Name</h1>
-          <span style="color:#777;font-size:1.06em;">Data Engineer &mdash; Your City, State</span>
-        </div>
+      <div class="profile-photo-wrapper">
+        <img src="profile-photo.jpg" alt="Rama Venkata Sai photo" class="profile-photo"/>
       </div>
-      <button class="toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme">🌙</button>
+      <div>
+        <span class="animated-name" id="highlight-name">Rama Venkata Sai</span>
+      </div>
+      <div>
+        <span class="animated-role">Data Engineer</span>
+      </div>
     </header>
 
-    <section class="about">
+    <section class="about" id="about">
       <h2>About Me</h2>
       <p>
-        Data Engineer and Analyst with almost four years of experience in SQL, Power BI, Python, PySpark, and cloud platforms. I design robust ETL pipelines and deliver actionable insights for product improvements. Certified Azure and Databricks Data Engineer Associate with a proven record of collaborating across teams to implement data-driven solutions.
+        Data Engineer and Analyst with a foundation in ETL pipelines, analytics, and cloud solutions. I specialize in extracting insights from complex data and building resilient engineering solutions. Curious, adaptable, and collaborative, I always seek innovative ways to drive growth with data.
       </p>
-      <div class="contact-links">
-        <a href="mailto:your.email@example.com" target="_blank">Email</a> |
-        <a href="https://www.linkedin.com/in/your-linkedin/" target="_blank">LinkedIn</a> |
-        <a href="https://github.com/your-github" target="_blank">GitHub</a>
+      <div class="contact-links" id="contact">
+        <a href="mailto:YOUR.EMAIL@EXAMPLE.COM" target="_blank">Email</a> |
+        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN/" target="_blank">LinkedIn</a> |
+        <a href="https://github.com/ramavenkatsai" target="_blank">GitHub</a>
       </div>
     </section>
 
-    <section class="skills-section">
-      <h2>My Skills</h2>
+    <section class="skills-section" id="skills">
+      <h2>Skills</h2>
       <div class="skills-icons">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" title="Pandas">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pyspark/pyspark-original.svg" alt="PySpark" title="PySpark">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL/MySQL" title="SQL/MySQL">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" title="Linux">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" title="Azure">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/databricks/databricks-original.svg" alt="Databricks" title="Databricks">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powerbi/powerbi-original.svg" alt="Power BI" title="Power BI">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tableau/tableau-original.svg" alt="Tableau" title="Tableau">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS" title="AWS">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" title="GitHub">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg" alt="Kafka" title="Kafka">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" title="Git">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="SQL Server" title="SQL Server">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" title="MongoDB">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hadoop/hadoop-original.svg" alt="Hadoop" title="Hadoop">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheairflow/apacheairflow-original.svg" alt="Airflow" title="Airflow">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/excel/excel-original.svg" alt="Excel" title="Excel">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/python.svg" alt="Python" title="Python"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/pandas.svg" alt="Pandas" title="Pandas"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/apachepyspark.svg" alt="PySpark" title="PySpark"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/microsoftsqlserver.svg" alt="SQL Server" title="SQL Server"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/azuredevops.svg" alt="Azure" title="Azure"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/databricks.svg" alt="Databricks" title="Databricks"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/powerbi.svg" alt="Power BI" title="Power BI"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg" alt="Tableau" title="Tableau"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/linux.svg" alt="Linux" title="Linux"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/amazonaws.svg" alt="AWS" title="AWS"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/apacheairflow.svg" alt="Airflow" title="Airflow"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/apacherocketmq.svg" alt="Kafka" title="Kafka"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/git.svg" alt="Git" title="Git"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/microsoftexcel.svg" alt="Excel" title="Excel"/>
       </div>
     </section>
 
-    <section>
+    <section id="timeline">
       <h2 style="text-align:center;">Timeline &mdash; Experience &amp; Education</h2>
       <div class="timeline">
         <div class="timeline-entry left">
           <div class="content">
-            <span class="date-range">Dec 2024</span><br/>
-            <span class="org">Syracuse University</span>
+            <span class="date-range">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/syracuseuniversity.svg" width="24" alt="Syracuse University">
+              Dec 2024
+            </span>
+            <span class="org">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/syracuseuniversity.svg" alt="Syracuse University" title="Syracuse University">
+              Syracuse University
+            </span>
             <h3 style="margin:8px 0 4px;">MS in Information Systems</h3>
-            <p>Graduated with 4.0 GPA. Specialized in advanced data engineering and analytics.</p>
+            <p>Graduated with 4.0 GPA—specialized in advanced data engineering & analytics.</p>
           </div>
         </div>
         <div class="timeline-entry right">
           <div class="content">
-            <span class="date-range">Feb 2025 – Present</span><br/>
-            <span class="org">Syracuse University</span>
+            <span class="date-range">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/syracuseuniversity.svg" width="24" alt="Syracuse University">
+              Feb 2025 – Present
+            </span>
+            <span class="org">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/syracuseuniversity.svg" alt="Syracuse University" title="Syracuse University">
+              Syracuse University
+            </span>
             <h3 style="margin:8px 0 4px;">Data Research Analyst</h3>
             <ul style="padding-left:1.2em; margin:0; font-size:1em;">
-              <li>Developed & maintained PySpark ETL pipelines for academic data in Docker, managing 1M+ records for SQL Server.</li>
-              <li>Structured data into a star schema warehouse for analytics and reporting.</li>
-              <li>Collaborated with BI & Data Science teams to deliver datasets aligned to reporting needs.</li>
+              <li>Built and maintained PySpark ETL pipelines for academic data.</li>
+              <li>Structured data into star schema warehouses and enabled BI analytics.</li>
             </ul>
           </div>
         </div>
         <div class="timeline-entry left">
           <div class="content">
-            <span class="date-range">Oct 2020 – Jan 2023</span><br/>
-            <span class="org">LTIMindtree, Hyderabad</span>
+            <span class="date-range">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/ltimindtree.svg" width="24" alt="LTIMindtree" title="LTIMindtree">
+              Oct 2020 – Jan 2023
+            </span>
+            <span class="org">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/ltimindtree.svg" alt="LTIMindtree" title="LTIMindtree">
+              LTIMindtree, Hyderabad
+            </span>
             <h3 style="margin:8px 0 4px;">Data Engineer</h3>
             <ul style="padding-left:1.2em; margin:0; font-size:1em;">
-              <li>Architected ETL pipelines with SSIS & SSMS, centralizing and modeling data for reporting.</li>
-              <li>Tuned SQL transformations, achieving a 42% reduction in pipeline runtime.</li>
-              <li>Maintained near-100% uptime and enabled Power BI insights for stakeholders.</li>
+              <li>Architected ETL pipelines using SSIS & SSMS. Centralized and modeled data for reporting.</li>
+              <li>Tuned SQL transformations for efficiency. Enabled Power BI reporting for stakeholders.</li>
             </ul>
           </div>
         </div>
         <div class="timeline-entry right">
           <div class="content">
-            <span class="date-range">Jan 2020 – Oct 2020</span><br/>
-            <span class="org">Arthashastra Intelligence, Hyderabad</span>
+            <span class="date-range">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/arthashastra.svg" width="24" alt="Arthashastra Intelligence">
+              Jan 2020 – Oct 2020
+            </span>
+            <span class="org">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/arthashastra.svg" alt="Arthashastra Intelligence" title="Arthashastra Intelligence">
+              Arthashastra Intelligence
+            </span>
             <h3 style="margin:8px 0 4px;">Data Analytics Engineer</h3>
             <ul style="padding-left:1.2em; margin:0; font-size:1em;">
-              <li>Streamlined preprocessing using Python (Pandas, NumPy), visualized insights via Matplotlib & Seaborn.</li>
-              <li>Delivered statistical analyses for strategic decision-making.</li>
+              <li>Streamlined preprocessing with Python and delivered business insights.</li>
+              <li>Created impactful visualizations for strategic decision-making.</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section>
-      <h2>Highlighted Projects</h2>
-      <div class="projects" id="projectsList">
+    <section id="projects">
+      <h2 style="text-align:center;">Projects</h2>
+      <div class="projects">
         <div class="card" onclick="toggleDetails(event, 'p1')">
           <h3 class="card-title">Academic Data Lakehouse Automation</h3>
-          <p>Automated ETL pipelines for university records using PySpark, Docker, and SQL Server.</p>
+          <p>Automated ETL pipelines for university records using PySpark, Docker, SQL Server.</p>
           <div id="details-p1" style="display:none; margin-top:0.5em; font-size:1em;">
             <ul>
               <li>Parallel data transformation & cleansing flows.</li>
               <li>Star schema warehouse for unified analytics.</li>
-              <li>Enabled direct access for BI reporting teams.</li>
+              <li>Enabled direct metrics access for BI reporting teams.</li>
             </ul>
             <a href="#" target="_blank">View on GitHub</a>
           </div>
@@ -241,7 +351,6 @@
           <div id="details-p3" style="display:none; margin-top:0.5em; font-size:1em;">
             <ul>
               <li>Built interactive Tableau dashboards and a data story for executive review.</li>
-              <li>Explored multi-country energy trends and GDP links.</li>
             </ul>
             <a href="#" target="_blank">View on GitHub</a>
           </div>
@@ -249,13 +358,14 @@
       </div>
     </section>
 
-    <footer>
-      &copy; 2025 Your Name. Hosted on GitHub Pages.
-    </footer>
+    <div class="footer">
+      &copy; 2025 Rama Venkata Sai. Hosted on GitHub Pages.
+    </div>
   </div>
   <script>
-    // Light/Dark mode toggle
+    // Theme toggle
     const toggleBtn = document.getElementById('themeToggle');
+    // Set theme if preferred
     if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
       document.body.setAttribute('data-theme','dark');
       toggleBtn.textContent = '☀️';
@@ -271,6 +381,19 @@
       const details = document.getElementById('details-' + id);
       details.style.display = (details.style.display === 'none' || !details.style.display) ? 'block' : 'none';
     }
+    // Menu highlighting
+    const navLinks = document.querySelectorAll('.nav a');
+    window.addEventListener('scroll', () => {
+      const fromTop = window.scrollY + 52;
+      navLinks.forEach(link => {
+        const section = document.querySelector(link.hash);
+        if (section && section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
   </script>
 </body>
 </html>

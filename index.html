@@ -316,3 +316,469 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Akhil Badampudi | Data Engineer Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #61a2ff;
+      --accent: #23273a;
+      --background: #10111a;
+      --text: #f0f4fe;
+      --highlight: #201e4c;
+      --card-gradient: linear-gradient(120deg,#7ee8fa,#eec0c6 60%,#6d93fd 100%);
+      --timeline-line: #ae7df7;
+      --timeline-dot: #f9d423;
+      --gold: #fff489;
+      --purple: #ae7df7;
+    }
+    html, body { height: 100%; width: 100%; margin: 0; background: var(--background); color: var(--text); font-family: 'Inter', 'Segoe UI', Arial, sans-serif; }
+    body { min-height: 100vh; }
+    .fade-screen {
+      background: linear-gradient(120deg, #19162c 50%, #3a3a62 100%);
+      color: #fff;
+      z-index: 1200;
+      width: 100vw; height: 100vh; min-height:100vh;
+      top: 0; left: 0; position: fixed; display: flex; flex-direction: column; align-items:center; justify-content:center;
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      animation: fadeScreenOut 2.25s 1.6s forwards;
+      opacity: 1;
+      pointer-events: auto;
+      transition: opacity 0.3s;
+    }
+    .fade-screen.hide { opacity: 0; pointer-events:none; z-index:-10;}
+    .welcome-message span {
+      display: inline-block;
+      opacity: 0;
+      transform: scale(1.10) translateY(24px);
+      animation: welcomeFadeIn 0.7s ease forwards;
+    }
+    .welcome-message span:nth-child(1) { animation-delay: 0.04s; }
+    .welcome-message span:nth-child(2) { animation-delay: 0.22s; }
+    .welcome-message span:nth-child(3) { animation-delay: 0.44s; }
+    .welcome-message span:nth-child(4) { animation-delay: 0.68s; }
+    .welcome-message span:nth-child(5) { animation-delay: 0.88s; }
+    .welcome-message span:nth-child(6) { animation-delay: 1.04s; }
+    .welcome-message span:nth-child(7) { animation-delay: 1.23s; }
+    @keyframes fadeScreenOut { to { opacity:0; pointer-events: none; z-index:-1;} }
+    @keyframes welcomeFadeIn { to { opacity: 1; transform: scale(1) translateY(0);} }
+
+    .nav {
+      position: fixed; width: 100vw; top: 0; left: 0; background: var(--accent); display: flex;
+      justify-content: center; align-items: center; gap: 2.1rem; height: 62px; z-index: 105; box-shadow: 0 2px 14px #090a1844;
+    }
+    .nav a {color: var(--primary); text-decoration: none; font-weight: 700; letter-spacing:0.02em;
+      padding: 0.75rem 1.2rem; border-radius: 8px; font-size:1.09rem; transition: background 0.16s, color 0.18s, transform 0.14s;}
+    .nav a.active,.nav a:hover { background: var(--highlight); color:var(--gold); transform:scale(1.08);}
+    .theme-toggle {display:none;}
+    .container {width:100vw; max-width:1160px; margin:0 auto; padding:80px 0 42px 0;}
+
+    /* About Me Split */
+    .about-split {
+      display: flex; align-items: flex-start; justify-content: center; gap: 3rem;
+      background: var(--accent);
+      border-radius: 20px;
+      box-shadow: 0 2px 20px #1a174665;
+      padding: 2.5rem 2.7rem 2.5rem 2.1rem;
+      margin: 3.8rem auto 2.7rem auto;
+      max-width: 1050px;
+    }
+    .about-left { flex:0 0 210px; display:flex; justify-content:center; align-items:flex-start;}
+    .profile-photo-wrapper {
+      width: 180px; height: 180px; overflow: hidden;
+      border-radius: 50%; border: 7px solid var(--primary);
+      box-shadow: 0 6px 36px #4862ff51,0 2px 24px #61a2ff77;
+      background: var(--highlight);
+      margin-top: 10px;
+    }
+    .profile-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; transition: transform 0.33s;}
+    .profile-photo-wrapper:hover .profile-photo { transform: scale(1.12) rotate(-4deg);}
+    .about-right { flex:1; min-width: 250px;}
+    .about-heading {
+      text-align: center;
+      font-size: 2.34rem;
+      color: var(--primary);
+      font-weight: 800;
+      letter-spacing: .02em;
+      margin-bottom: 0.7em;
+      margin-top: 0;
+      transition: color 0.18s;
+      text-shadow: 0 7px 40px #ae7df713;
+    }
+    .about-right p {
+      text-align: justify;
+      font-size: 1.16rem;
+      line-height: 1.67;
+      margin-top: 1.1em;
+      color:var(--text)
+    }
+    .about-right p strong {color: var(--gold);}
+    .about-heading:hover { color: var(--gold); }
+
+    /* Skills - all icons the same and hover effect for all section icons/cards */
+    .skills-icons, .certifications-row, .contact-icons { 
+      display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 40px;
+      margin-top: 1.3rem;
+    }
+    .skills-icons img, .certifications-row img, .contact-icons a {
+      width: 88px; height: 88px; object-fit: contain; background: #181a37;
+      border-radius: 22px; border: 3px solid #ffe259;
+      box-shadow: 0 5px 28px #418be388,0 2px 24px #fff48955;
+      padding: 9px; filter: grayscale(0) brightness(1.09);
+      transition: box-shadow 0.28s, transform 0.21s, border 0.24s, filter 0.18s, background 0.13s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .skills-icons img:hover, .cert-card:hover, .contact-icons a:hover {
+      box-shadow: 0 13px 48px #fff489dd, 0 5px 40px #ae7df7cc;
+      transform: scale(1.19) rotate(-3deg);
+      border: 3px solid #ae7df7;
+      filter: brightness(1.25) saturate(1.3);
+      background: #fff48920;
+      z-index:2;
+    }
+    /* Certifications section icons (cards) */
+    .cert-card {
+      background: #232346;
+      border-radius:15px;
+      box-shadow: 0 3px 12px #ae7df7dd,0 1px 8px #fff48922;
+      padding:1.2rem 1.62rem 1rem 1.62rem; max-width:264px; text-align:center;
+      display: flex; flex-direction: column; align-items: center;
+      min-width: 194px;
+      cursor: pointer;
+      transition: box-shadow 0.19s, transform 0.19s, border 0.21s;
+      border: 3px solid #ffe259;
+    }
+    .cert-title {margin-top:1em; color:#fff489; font-weight:700; font-size:1.11rem;}
+    .cert-org {color:#61a2ff; font-size:.96rem;}
+
+    .section {margin:3.1rem auto 2.5rem auto; max-width:1080px; background:var(--accent); border-radius: 19px;box-shadow:0 2px 20px #1a174665; padding:2.0rem;}
+
+    /* Timeline Section */
+    .timeline-section {padding: 0 0.3rem;}
+    .timeline-year {
+      font-size: 1.55rem; font-weight: 900; color: #ffe259; margin: 2.8em 0 1em 10px;
+      letter-spacing: 2px;
+    }
+    .timeline-list {margin-bottom:1.8rem;}
+    .timeline-item {
+      display: flex; align-items: flex-start; margin-bottom: 54px; position: relative; background:none;
+    }
+    .timeline-dot {
+      width: 38px; height: 38px; background: linear-gradient(135deg,#ffcb6d 40%,#61a2ff 100%);
+      border-radius: 50%; border:4px solid #fff489; display: flex; align-items: center; justify-content: center; z-index: 2;
+      position: absolute; left: 0; top: 10px; box-shadow: 0 5px 20px #fff48970;
+    }
+    .timeline-dot img {
+      width: 26px; height: 26px; display: block; filter:none;
+    }
+    .timeline-content {
+      margin-left: 80px; background: var(--highlight); border-radius: 13px; box-shadow: 0 2px 11px #ae7df721;
+      padding: 1.31rem 1.85rem 1.1rem 2.05rem; min-width: 225px; max-width: 670px; color: var(--text);
+      transition: box-shadow 0.18s, background 0.13s, transform 0.15s, border 0.22s;
+      border: 3px solid #ffe259;
+    }
+    .timeline-content:hover { 
+      background: #1e1a39; 
+      box-shadow: 0 3px 28px #fff48948;
+      transform: scale(1.05);
+      border: 3px solid #ae7df7;
+    }
+    .timeline-title { font-size: 1.22rem; font-weight: 700; color: #ffe259; margin-bottom:7px;}
+    .timeline-org { font-size: 1.09rem; font-weight: 600; color: #61a2ff;}
+    .timeline-date { font-size: .99rem; color: #ae7df7; margin-bottom:8px; }
+
+    /* Projects Section */
+    .project-subsection {
+      margin-bottom: 2.1rem;
+      background: #191b2b;
+      border-radius: 14px;
+      box-shadow: 0 3px 14px #a1a1de44;
+      padding: 2.1rem 2.2rem 1.1rem 2.2rem;
+      border: 3px solid #ffe259;
+      transition: box-shadow 0.19s, transform 0.13s, border 0.17s;
+    }
+    .project-subsection:hover {
+      box-shadow:0 10px 32px #fff48940, 0 5px 22px #ae7df744;
+      transform: scale(1.03); border: 3px solid #ae7df7;
+    }
+    .project-title {
+      color: #61a2ff;
+      font-size:1.45rem;
+      font-weight:700;
+    }
+    .project-detail {
+      font-size:1.0rem;
+      color:#fff489;
+      margin-bottom:1em;
+    }
+    .project-subsection ul, .project-subsection li {
+      font-size:1.06rem;
+      color:#e3e6fc;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      margin:3.5rem auto 2.2rem auto;
+      background: var(--accent);
+      border-radius: 18px;
+      max-width: 740px;
+      box-shadow: 0 2px 22px #1a174675;
+      padding: 2.2rem 2rem 2rem 2rem;
+      text-align:center;
+    }
+    .contact-section h2 {margin-bottom:1rem;}
+    .contact-icons {
+      gap: 54px;
+      padding: 1.0rem 0;
+    }
+    .contact-icons a, .contact-icons span {
+      justify-content:center;
+      align-items:center;
+      background: #181a37;
+      border-radius: 18px;
+      border: 3px solid #ffe259;
+      box-shadow: 0 5px 28px #418be388,0 2px 24px #fff48955;
+      width: 88px; height: 88px;
+      display: flex; font-size:2.3em; color: #61a2ff;  text-decoration:none; transition: box-shadow 0.21s, transform 0.15s, border 0.16s;
+      margin:0 7px;
+    }
+    .contact-icons a:hover, .contact-icons span:hover {
+      box-shadow: 0 13px 48px #fff489dd, 0 5px 40px #ae7df7cc;
+      transform: scale(1.14) rotate(3deg);
+      border: 3px solid #ae7df7;
+      color: #ae7df7;
+      background:#fff48920;
+    }
+    .contact-label {display:block;font-size:0.97em;margin-top:4px;color:#fff489;letter-spacing:0.3px;}
+    /* Footer */
+    .footer { text-align:center; color:#fff489; background:#181937; border-radius:11px; width:93vw; margin:3.2rem auto 0 auto; padding:1.2rem 0 1rem 0;}
+    @media (max-width:950px) {
+      .about-split {flex-direction:column; align-items:center;}
+      .about-left {justify-content:center; margin-bottom: 2em;}
+      .about-right {text-align: left;}
+    }
+    @media (max-width:700px) {
+      .about-split, .section, .contact-section {padding:1.3rem 2vw;}
+      .timeline-content {padding:1.12rem 0.7rem 0.7rem 1.1rem;}
+      .skills-icons, .certifications-row, .contact-icons {gap:19px;}
+      .footer {padding:0.7rem 0 0.8rem 0;}
+      .profile-photo-wrapper {width:120px;height:120px;}
+    }
+  </style>
+</head>
+<body data-theme="dark">
+  <!-- Welcome Animation Screen -->
+  <div class="fade-screen" id="welcomeScreen">
+    <div class="welcome-message" style="text-align:center;">
+      <span>Hi,</span> <span>Welcome</span> <span>to</span> <span>Akhil</span> <span>Badampudi's</span> <span>Website</span> <span>!</span>
+    </div>
+  </div>
+  <nav class="nav" id="nav">
+    <a href="#about" class="active">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="container" id="mainContainer" style="display:none;">
+    <div class="about-split" id="about">
+      <div class="about-left">
+        <div class="profile-photo-wrapper">
+          <img src="profile-photo.jpg" alt="Akhil Badampudi photo" class="profile-photo"/>
+        </div>
+      </div>
+      <div class="about-right">
+        <h2 class="about-heading">About Me</h2>
+        <p>
+          <strong>Data Engineer</strong> and Analyst with almost four years of experience in SQL, Power BI, Python, PySpark, and cloud platforms.<br>
+          Certified Azure and Databricks Data Engineer Associate. I deliver robust ETL pipelines, enable actionable business insights, and work across teams to implement pragmatic, data-driven solutions for business and research outcomes.<br>
+          <strong>Location:</strong> Westborough, MA (open to relocate & remote).
+        </p>
+      </div>
+    </div>
+
+    <section class="section" id="skills">
+      <h2>Skills</h2>
+      <div class="skills-icons">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt="Python" title="Python"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pandas.svg" alt="Pandas" title="Pandas"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pyspark.svg" style="background:#fffbe8;" alt="PySpark" title="PySpark"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/scikitlearn.svg" style="background: #fffbe8;" alt="scikit-learn" title="scikit-learn"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/sqlite.svg" alt="SQL" title="SQL"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg" alt="Linux" title="Linux"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftsqlserver.svg" alt="SQL Server" title="SQL Server"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg" alt="MySQL" title="MySQL"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/hive.svg" alt="Hive" title="Hive"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/hadoop.svg" style="background:#fff07d;" alt="Hadoop" title="Hadoop"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mongodb.svg" alt="MongoDB" title="MongoDB"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apachekafka.svg" alt="Kafka" title="Kafka"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apacheairflow.svg" alt="Airflow" title="Airflow"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/databricks.svg" style="background:#fffbe8;" alt="Databricks" title="Databricks"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftazure.svg" alt="Azure" title="Azure"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonaws.svg" alt="AWS" title="AWS"/>
+        <img src="https://www.vectorlogo.zone/logos/microsoft_powerbi/microsoft_powerbi-icon.svg" style="background:#fff07d;" alt="Power BI" title="Power BI"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tableau.svg" style="background:#fffbe8;" alt="Tableau" title="Tableau"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftexcel.svg" alt="Excel" title="Excel"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" title="GitHub"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt="Git" title="Git"/>
+      </div>
+    </section>
+
+    <section class="section timeline-section" id="timeline">
+      <h2>Timeline — Experience &amp; Education</h2>
+      <div class="timeline-year">2025 – Present</div>
+      <div class="timeline-list">
+        <div class="timeline-item">
+          <div class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/syracuseuniversity.svg" alt="Syracuse University"></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Data Research Analyst</div>
+            <div class="timeline-org">Syracuse University</div>
+            <div class="timeline-date">February 2025 – Present</div>
+            <ul>
+              <li>Developing and maintaining PySpark ETL pipelines in Docker, processing over 1M academic records for SQL Server.</li>
+              <li>Architected a star schema warehouse for analytics.</li>
+              <li>Delivered tailored datasets for BI and Data Science teams in line with governance.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-year">2024</div>
+      <div class="timeline-list">
+        <div class="timeline-item">
+          <div class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/syracuseuniversity.svg" alt="Syracuse University"></div>
+          <div class="timeline-content">
+            <div class="timeline-title">MS in Information Systems (GPA: 4.0)</div>
+            <div class="timeline-org">Syracuse University</div>
+            <div class="timeline-date">Graduation: December 2024</div>
+            <p>Specialized in advanced data engineering and analytics.</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-year">2020 – 2023</div>
+      <div class="timeline-list">
+        <div class="timeline-item">
+          <div class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ltimindtree.svg" alt="LTIMindtree"></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Data Engineer</div>
+            <div class="timeline-org">LTIMindtree, Hyderabad</div>
+            <div class="timeline-date">October 2020 – January 2023</div>
+            <ul>
+              <li>Architected ETL pipelines for supply chain management (SSIS/SSMS), centralizing sources into a star schema warehouse.</li>
+              <li>Optimized SQL transformations, maintained 99% uptime, automated validation/monitoring via Airflow.</li>
+              <li>Reduced pipeline runtime by 42% and delivered Power BI analytic datasets.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-year">2020</div>
+      <div class="timeline-list">
+        <div class="timeline-item">
+          <div class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/arthashastra.svg" alt="Arthashastra Intelligence"></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Data Analytics Engineer</div>
+            <div class="timeline-org">Arthashastra Intelligence</div>
+            <div class="timeline-date">January 2020 – October 2020</div>
+            <ul>
+              <li>Automated preprocessing using Pandas/NumPy in Jupyter; enabled business decisions with analytical insights.</li>
+              <li>Developed visualizations using Matplotlib & Seaborn for correlation/statistical analysis.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="certifications">
+      <h2>Certifications</h2>
+      <div class="certifications-row">
+        <div class="cert-card">
+          <img src="https://images.credly.com/size/340x340/images/6097937a-c25a-46b8-82bc-244bfb49b6a3/Microsoft_Azure_Data_Engineer_Associate-600x600.png" alt="Azure Data Engineer">
+          <div class="cert-title">Microsoft Certified Azure Data Engineer Associate</div>
+          <div class="cert-org">Microsoft</div>
+        </div>
+        <div class="cert-card">
+          <img src="https://images.credly.com/size/340x340/images/3c887c02-cb8e-46ec-b7c7-2bf8ab5f735c/databricks-data-engineer-associate-badge.png" alt="Databricks Data Engineer">
+          <div class="cert-title">Databricks Certified Data Engineer Associate</div>
+          <div class="cert-org">Databricks</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <h2>Projects</h2>
+      <div class="project-subsection">
+        <div class="project-title">Healthcare Revenue Cycle Management</div>
+        <div class="project-detail">
+          Improved billing cycle efficiency by deploying a scalable Azure-based ELT pipeline.
+        </div>
+        <ul>
+          <li>Enabled parallel processing and secure credential configuration for enhanced performance and data safety.</li>
+        </ul>
+      </div>
+      <div class="project-subsection">
+        <div class="project-title">Sustainable Energy and National Growth</div>
+        <div class="project-detail">
+          Built Tableau dashboards to visualize sustainable energy’s impact on economic growth for 20+ countries.
+        </div>
+        <ul>
+          <li>Created Tableau Story to clarify global energy-economic trends and influence growth.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <h2>Contact</h2>
+      <div class="contact-icons">
+        <a href="mailto:saiakhil.badampudi@gmail.com" target="_blank" title="Email">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gmail.svg" alt="Gmail" style="width:48px;height:48px;">
+        </a>
+        <a href="https://www.linkedin.com/in/ss-akhil-badampudi/" target="_blank" title="LinkedIn">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg" alt="LinkedIn" style="width:48px;height:48px;">
+        </a>
+        <a href="https://github.com/ramavenkatsai" target="_blank" title="GitHub">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" style="width:48px;height:48px;">
+        </a>
+        <span title="Phone" style="font-size:2.1em; display:flex; flex-direction:column; align-items:center;">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/phone.svg" alt="Phone" style="width:44px;height:44px;">
+          <span class="contact-label" style="margin-top:8px;">+1 (315) 952 9764</span>
+        </span>
+      </div>
+    </section>
+
+    <div class="footer">
+      &copy; 2025 Akhil Badampudi. Hosted on GitHub Pages.<br>
+      Certified Azure & Databricks Data Engineer Associate.
+    </div>
+  </div>
+  <script>
+    // Welcome message animation gate
+    setTimeout(function() {
+      document.getElementById("welcomeScreen").classList.add("hide");
+      document.getElementById("mainContainer").style.display="block";
+    }, 2400);
+
+    // Collapsible project subsections (if needed)
+    // Not used here but available for expansion
+
+    // Menu highlighting
+    const navLinks = document.querySelectorAll('.nav a');
+    window.addEventListener('scroll', () => {
+      const fromTop = window.scrollY + 70;
+      navLinks.forEach(link => {
+        const section = document.querySelector(link.hash);
+        if (section && section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

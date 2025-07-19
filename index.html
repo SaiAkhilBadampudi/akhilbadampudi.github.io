@@ -10,248 +10,338 @@
       --primary: #61a2ff;
       --background: #10111a;
       --accent: #23273a;
-      --hover-bright: #fff489;
+      --skill-bg: #1e263e;
       --hover-bg: #ffe259;
+      --hover-bright: #fff489;
       --card-gradient: linear-gradient(120deg,#afe5fa,#eec0c6 60%,#6d93fd 100%);
     }
-    html, body { height: 100%; width: 100%; margin: 0; padding: 0; background: var(--background); color: #f0f4fe; font-family: 'Inter', 'Segoe UI', Arial, sans-serif; }
-    body { min-height: 100vh; }
+    html, body { margin:0; padding:0; height:100%; width:100%; background:var(--background); color:#f0f4fe; font-family: 'Inter', 'Segoe UI', Arial, sans-serif;}
+    body { min-height:100vh; }
+    a { text-decoration: none; }
 
-    /* Welcome Splash Full Page */
-    #welcome-splash {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      background: linear-gradient(120deg, #10111a 70%, #23273a 100%);
-      z-index: 3000;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    /* Opening Splash Screen */
+    #splash {
+      position: fixed; top: 0; left: 0; width:100vw; height:100vh; background: var(--background);
+      z-index: 2222; display: flex; align-items: center; justify-content: center; flex-direction: column;
+      font-size: 2.5rem; font-weight: 900; color: var(--primary);
+      text-align:center; letter-spacing:0.04em; animation: fadeOutSplash 1.15s 2.9s forwards;
       transition: opacity 1.2s;
-      opacity: 1; animation: splashIn 1.2s cubic-bezier(.33,1.39,.39,1.13);
     }
-    @keyframes splashIn {
-      0% {opacity: 0; transform: scale(0.97) translateY(35px);}
-      75% {opacity: 1; transform: scale(1.045) translateY(-7px);}
-      100% {opacity: 1; transform: scale(1) translateY(0);}
+    @keyframes fadeOutSplash {
+      0%{opacity:1;}
+      85%{opacity:1;}
+      100%{opacity:0; visibility:hidden;}
     }
-    #welcome-splash.hide {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 1.1s;
+    #splash-message {animation: showInSplash 1.2s;}
+    @keyframes showInSplash {
+      0%{opacity:0; transform:scale(0.8);}
+      75%{opacity:1; transform:scale(1.04);}
+      100%{opacity:1; transform:scale(1);}
     }
-    .splash-message {
-      color: var(--primary);
-      font-size: 2.8rem;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      text-align: center;
-      line-height: 1.22;
-      animation: splashTextFade 1.2s cubic-bezier(.23,1.1,.41,1.12);
-    }
-    @keyframes splashTextFade {
-      0% { opacity: 0; transform: scale(0.82);}
-      70% { opacity: 1; transform: scale(1.07);}
-      100% { opacity: 1; transform: scale(1);}
-    }
-    .splash-highlight {
-      background: linear-gradient(90deg, #fff489, #61a2ff 85%, #ae7df7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-size: 3.2rem;
-      font-weight: 1000;
-      letter-spacing: 0.08em;
-      display: inline-block;
-      filter: drop-shadow(0 6px 35px #fff48944);
-      animation: pulseGlow 2.8s infinite alternate cubic-bezier(.34,1.03,.56,1.12);
-    }
-    @keyframes pulseGlow {
-      0% {filter: drop-shadow(0 10px 45px #fff48933);}
-      100% {filter: drop-shadow(0 13px 60px #61a2ff66);}
-    }
-    .splash-info {
-      font-size: 1.28rem;
-      color: #e9efff;
-      margin-top: 2.1rem;
-      letter-spacing: 0.04em;
-      opacity: 0.92;
-      animation: infoFadeIn 1.5s 0.7s both;
-    }
-    @keyframes infoFadeIn {
-      from { opacity: 0; transform: translateY(16px);}
-      to { opacity: 0.92; transform: none;}
-    }
-    /* Place below splash message into main content */
-    #main-welcome-message {
-      width: 100%;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      margin: 0 auto 1.2rem auto;
-      padding-top: 50px;
-      padding-bottom: 28px;
-      opacity:0; transform: translateY(25px); /* animated in */
-      transition: opacity .9s, transform .9s;
-    }
-    #main-welcome-message.animated {
-      opacity:1; transform: none;
-    }
-    .main-splash-message {
-      color: var(--primary);
-      font-size: 2.35rem;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      text-align: center;
-      line-height: 1.22;
-      margin: 0;
-    }
-    .main-splash-highlight {
-      background: linear-gradient(90deg, #fff489, #61a2ff 80%, #ae7df7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-size: 2.6rem;
-      font-weight: 1000;
-      letter-spacing: 0.075em;
-      display: inline-block;
-      filter: drop-shadow(0 5px 35px #fff48944);
-    }
-    .main-splash-info {
-      font-size: 1.1rem;
-      color: #e9efff;
-      margin-top: 1.29rem;
-      letter-spacing: 0.038em;
-      opacity: 0.95;
-    }
-    /* Navigation */
+
     .nav { position: fixed; width:100vw; top:0; left:0; background:var(--accent);
       display:flex; justify-content: center; align-items:center; gap:2.2rem; height:60px; z-index:120;
       box-shadow: 0 2px 14px #090a1844;}
     .nav a { color:var(--primary); font-weight:700; letter-spacing:0.02em; padding:0.72rem 1.27rem; border-radius:8px; font-size:1.09rem;
       background: none; border:none; transition: background 0.15s, color 0.16s, transform 0.13s;}
     .nav a.active, .nav a:hover { background: var(--hover-bg); color: #292929; transform: scale(1.07); }
-    .container { max-width:1200px; margin:0 auto; margin-top:80px; padding:0; }
-    /* Animated entry for sections */
-    [data-anim] { opacity:0; transform: translateY(36px) scale(0.97); transition: opacity .95s, transform .95s;}
-    [data-anim].in { opacity:1; transform: none;}
-    /* ... Rest of your styles, see the last long code for skills, timeline, certifications, projects, about-split layout, and contacts ... */
-    /* Use rest of the CSS from above responses for all your site, including hover effects, section layouts, and responsive styling */
-    /* For brevity, it's omitted here, but you SHOULD copy the full CSS from previous codes to cover all feature areas. */
 
-    /* Example for skills icons hover (must match your previous, paste more from your earlier code): */
-    .skills-icons img,
-    .timeline-dot img,
-    .cert-card img,
-    .contact-icon {
-      width:92px; height:92px; border-radius:26px; background:var(--card-gradient);
+    .container { max-width:1200px; margin:0 auto; margin-top:80px; padding:0; }
+    /* About Section Split Two Columns */
+    .about-split { display: flex; align-items: center; justify-content: center; background: var(--accent); border-radius: 28px; box-shadow: 0 3px 18px #afe5fa35,0 6px 32px #14164222; margin:3.4rem 0; min-height: 340px; }
+    .about-photo-side { flex:1; display:flex; justify-content:center; align-items:center; min-width:240px; }
+    .profile-photo-wrapper { width:220px; height:220px; overflow:hidden; border-radius:50%; border:7px solid var(--primary); margin:2.5rem; background: var(--card-gradient);}
+    .profile-photo { width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; transition:transform 0.33s;}
+    .profile-photo-wrapper:hover .profile-photo { transform: scale(1.12) rotate(-4deg);}
+    .about-text-side { flex:2; display: flex; flex-direction:column; justify-content: center; align-items: flex-start; padding:1.8rem 2.3rem 1.8rem 0;}
+    .about-heading { width:100%; text-align:center; font-size:2.4rem; color:var(--primary); letter-spacing:0.04em; font-weight:900; margin-bottom:18px;}
+    .about-text-side p { margin:0; padding:0; font-size:1.25rem; color: #f0f4fe; text-align:left; line-height:1.65; padding-right:0.3rem;}
+
+    /* Skills Section */
+    .section {margin:3.2rem 0; background:var(--accent); border-radius:22px; box-shadow:0 2px 18px #afe5fa22;}
+    .section h2 { text-align:center; color:var(--primary); font-size:2.25rem; letter-spacing:0.07em; font-weight:900; margin-bottom:1.5rem; margin-top: 0; padding-top:2.3rem;}
+    .skills-icons {display:flex; flex-wrap:wrap; gap:38px; justify-content:center; align-items:center; padding-bottom:2.2rem;}
+    .skills-icons img {
+      width:92px; height:92px; border-radius:26px; background:var(--skill-bg);
       border:4px solid #fff489; box-shadow: 0 6px 32px #61a2ff66, 0 2px 24px #fff48955;
-      padding:11px; filter: grayscale(0) brightness(1.05);
-      transition: box-shadow 0.24s, border 0.24s, background 0.18s, transform 0.19s, filter 0.19s;
+      padding:11px; filter: grayscale(0) brightness(1.07) drop-shadow(0 4px 24px #fff48922);
+      transition: box-shadow 0.24s, border 0.26s, background 0.18s, transform 0.19s, filter 0.19s;
       object-fit:contain;
     }
     .skills-icons img:hover, .timeline-dot img:hover, .cert-card img:hover, .contact-icon:hover {
       box-shadow:0 13px 45px #fff489dd,0 4px 22px #ae7df7bb;
-      border:4px solid #ae7df7; background: #fffbe8;
+      border:4px solid #ae7df7;
+      background: #fffbe8;
       transform:scale(1.22) rotate(7deg);
       filter: grayscale(0) brightness(1.23) saturate(1.3);
       z-index:2;
     }
+    /* Timeline New Stack (by years) */
+    .timeline-years { display:flex; flex-direction:column; gap:38px; padding-bottom:2.1rem; }
+    .timeline-year { margin-left: 1.8rem;}
+    .timeline-year-label { font-size:1.3rem; color:var(--hover-bright); font-weight:800; margin-bottom:21px; }
+    .timeline-year-group { display: flex; flex-direction: column; gap: 28px; margin-left:44px;}
+    .timeline-entry {
+      display:flex; align-items:center; gap:26px; background:var(--highlight);
+      border-radius:15px; box-shadow:0 2px 10px #fff48944; padding:1.3rem 1.2rem;
+      transition: box-shadow 0.23s, background 0.19s, transform 0.16s;
+    }
+    .timeline-entry:hover { box-shadow:0 13px 34px #fff489bb, 0 2px 14px #ae7df7bb; background:#191b39; transform:scale(1.07);}
+    .timeline-dot {height: 65px; min-width:65px; background:var(--hover-bg); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 12px #fff489cc;}
+    .timeline-dot img {width:39px; height:39px; background: none; border-radius:10px;}
+    .timeline-body {display:flex;flex-direction:column;}
+    .timeline-title {font-size:1.19rem; font-weight:700; color:var(--primary);}
+    .timeline-org {font-size:1.09rem; font-weight:600; color:#fff489;}
+    .timeline-date {font-size:1.02rem; color:#e3e3e3; margin-bottom:3px;}
+    .timeline-body ul { margin:0.4em 0 0 18px; padding:0; }
+
+    /* Certifications */
+    .certifications-row { display: flex; flex-wrap: wrap; gap: 38px; justify-content: center; margin-top:2.3rem; padding-bottom:2.1rem;}
+    .cert-card {
+      background:linear-gradient(125deg,#faf9dd77 0%,#ae7df799 100%); border-radius:19px;
+      padding:1.4rem 1.9rem; box-shadow:0 3px 17px #ae7df7dd,0 1px 13px #fff48922; max-width:320px; text-align:center;
+      display:flex; flex-direction:column; align-items:center; min-width:230px;
+      transition: box-shadow 0.23s, transform 0.17s;
+    }
+    .cert-card img { width:92px; height:92px; border-radius:14px; background:var(--skill-bg); margin-bottom:11px;}
+    .cert-title {margin-top:0.5em; color:#121432; font-weight:700; font-size:1.07rem;}
+    .cert-org {color:#61a2ff; font-size:0.98rem;}
+    .cert-card:hover { box-shadow:0 13px 31px #fff489cf,0 3px 16px #ae7df7ae; transform:scale(1.08) rotate(-2deg);}
+    .cert-card img:hover { /* already handled by generic hover */ }
+
+    /* Projects */
+    .projects-container { display: flex; flex-direction: column; gap:36px; margin-top:2.1rem; }
+    .project-section { background: var(--highlight); border-radius:16px; padding:1.49rem 1.5rem 1.1rem 1.8rem; box-shadow:0 2px 17px #fff48938; transition: box-shadow 0.19s, background 0.22s, transform 0.2s;}
+    .project-section:hover { box-shadow:0 12px 28px #fff489bd,0 7px 23px #afe5fa51; background:#191b30; transform:scale(1.04);}
+    .project-title { font-size:1.35rem; color:#fff489; font-weight:700; margin-bottom:8px;}
+    .project-subtitle { font-size:1.09rem; color:var(--primary); margin-bottom:10px;}
+    .project-desc { font-size:1.12rem; color:#e8ebff; margin:0.6em 0;}
+    .project-details ul {margin:7px 0 0 18px; padding:0;}
+
+    /* Contact Section */
+    .contact-section { background: var(--accent); border-radius:22px; padding:2.2rem 1.6rem 2.1rem 1.6rem; margin:3.2rem 0 2.2rem 0; display:flex; flex-direction:column; align-items:center; }
+    .contact-heading { text-align:center; color:var(--primary); font-size:2.1rem; font-weight:900; margin-bottom:1.3rem;}
+    .contact-methods { display:flex; flex-wrap:wrap; gap: 44px; justify-content:center;}
+    .contact-method { display: flex; align-items: center; gap: 14px; background:var(--skill-bg); border-radius:13px; padding:0.95em 1.4em; transition: box-shadow 0.21s, background 0.2s, transform 0.19s;}
+    .contact-method:hover { background: #fffbe8; box-shadow:0 10px 36px #61a2ff6a, 0 2px 14px #ae7df7a1; transform: scale(1.09) rotate(-4deg);}
+    .contact-icon { width: 44px; height: 44px; border-radius:11px; background:var(--card-gradient); padding:7px; object-fit:contain; transition: box-shadow 0.2s, transform 0.16s;}
+    .contact-info { color: #131933; font-weight:800; letter-spacing:0.04em; font-size:1.12rem;}
+    .contact-method:hover .contact-info { color: #ae7df7; }
+    .footer { text-align: center; color: #fff489; background: #181937; border-radius: 11px; width:90vw; margin:3.0rem auto 0 auto; padding:1.18rem 0;}
+    @media (max-width:1100px) {.about-split,.skills-icons,.certifications-row,.timeline-years{flex-direction:column;} .about-photo-side{margin-bottom:1.4rem;}}
+    @media (max-width:700px) { .profile-photo-wrapper{width:130px;height:130px;} .about-text-side{padding:1.2rem 0.2rem;} .section h2{padding-top:1.1rem;} .timeline-year-group{margin-left:19px;}
+      .skills-icons img{width:70px;height:70px;}
+      .cert-card img{width:70px;height:70px;}
+      .contact-icon{width:34px;height:34px;}
+    }
   </style>
 </head>
-<body class="splash-active">
-  <!-- Splash Welcome -->
-  <div id="welcome-splash">
-    <div class="splash-message">
-      Hi,<br>Welcome to <span class="splash-highlight">Akhil Badampudi</span>'s Website
-    </div>
-    <div class="splash-info">Data Engineer | Building analytics & cloud solutions</div>
-  </div>
-  <!-- Main site content -->
-  <div id="main-content" style="visibility:hidden;">
-    <nav class="nav" id="nav">
-      <a href="#about" class="active">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact-section">Contact</a>
-    </nav>
-    <div class="container">
-      <!-- Place welcome message at top -->
-      <div id="main-welcome-message">
-        <div class="main-splash-message">
-          Hi,<br>
-          Welcome to <span class="main-splash-highlight">Akhil Badampudi</span>'s Website
-        </div>
-        <div class="main-splash-info">Data Engineer | Building analytics & cloud solutions</div>
+<body>
+  <div id="splash"><span id="splash-message">Hi, Welcome to Akhil Badampudi's Website</span></div>
+  <nav class="nav" id="nav">
+    <a href="#about" class="active">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact-section">Contact</a>
+  </nav>
+  <div class="container">
+    <!-- ABOUT SECTION -->
+    <section class="about-split" id="about">
+      <div class="about-photo-side">
+        <div class="profile-photo-wrapper"><img class="profile-photo" src="profile-photo.jpg" alt="Akhil Badampudi photo"></div>
       </div>
-      <!-- Use data-anim for animated entry on all main sections -->
-      <section class="about-split" id="about" data-anim>
-        <div class="about-photo-side">
-          <div class="profile-photo-wrapper"><img class="profile-photo" src="profile-photo.jpg" alt="Akhil Badampudi photo"></div>
+      <div class="about-text-side">
+        <div class="about-heading">About Me</div>
+        <p>
+          Data Engineer and Analyst with almost four years of experience in SQL, Power BI, Python, PySpark, and cloud platforms.<br>
+          Certified Azure and Databricks Data Engineer Associate. I deliver robust ETL pipelines, enable actionable business insights, and work across teams to implement pragmatic, data-driven solutions for business and research outcomes.<br>
+          <b>Location:</b> Westborough, MA (open to relocate & remote).
+        </p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <h2>Skills</h2>
+      <div class="skills-icons">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt="Python" title="Python"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pandas.svg" alt="Pandas" title="Pandas"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pyspark.svg" alt="PySpark" title="PySpark"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/scikitlearn.svg" alt="scikit-learn" title="scikit-learn"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/sqlite.svg" alt="SQL" title="SQL"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg" alt="Linux" title="Linux"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftsqlserver.svg" alt="SQL Server" title="SQL Server"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg" alt="MySQL" title="MySQL"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/hive.svg" alt="Hive" title="Hive"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/hadoop.svg" alt="Hadoop" title="Hadoop"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mongodb.svg" alt="MongoDB" title="MongoDB"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apachekafka.svg" alt="Kafka" title="Kafka"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apacheairflow.svg" alt="Airflow" title="Airflow"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/databricks.svg" alt="Databricks" title="Databricks"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftazure.svg" alt="Azure" title="Azure"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonaws.svg" alt="AWS" title="AWS"/>
+        <img src="https://www.vectorlogo.zone/logos/microsoft_powerbi/microsoft_powerbi-icon.svg" alt="Power BI" title="Power BI"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tableau.svg" alt="Tableau" title="Tableau"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftexcel.svg" alt="Excel" title="Excel"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" title="GitHub"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt="Git" title="Git"/>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="section timeline-section" id="timeline">
+      <h2>Timeline — Experience & Education</h2>
+      <div class="timeline-years">
+        <div class="timeline-year">
+          <div class="timeline-year-label">2025 — Present</div>
+          <div class="timeline-year-group">
+            <div class="timeline-entry">
+              <span class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/syracuseuniversity.svg" alt="Syracuse University"></span>
+              <div class="timeline-body">
+                <div class="timeline-title">Data Research Analyst</div>
+                <div class="timeline-org">Syracuse University, Syracuse, NY</div>
+                <div class="timeline-date">Feb 2025 – Present</div>
+                <ul>
+                  <li>Developing and maintaining PySpark ETL pipelines in Docker, processing 1M+ academic records for SQL Server.</li>
+                  <li>Structured data into a star schema warehouse for analytics.</li>
+                  <li>Collaborated with BI & Data Science teams to deliver tailored datasets aligned with governance.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="about-text-side">
-          <div class="about-heading">About Me</div>
-          <p>
-            Data Engineer and Analyst with almost four years of experience in SQL, Power BI, Python, PySpark, and cloud platforms.<br>
-            Certified Azure and Databricks Data Engineer Associate. I deliver robust ETL pipelines, enable actionable business insights, and work across teams to implement pragmatic, data-driven solutions for business and research outcomes.<br>
-            <b>Location:</b> Westborough, MA (open to relocate & remote).
-          </p>
+        <div class="timeline-year">
+          <div class="timeline-year-label">2024</div>
+          <div class="timeline-year-group">
+            <div class="timeline-entry">
+              <span class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/syracuseuniversity.svg" alt="Syracuse University"></span>
+              <div class="timeline-body">
+                <div class="timeline-title">MS in Information Systems (GPA: 4.0)</div>
+                <div class="timeline-org">Syracuse University, Syracuse, NY</div>
+                <div class="timeline-date">Graduation: Dec 2024</div>
+                <div>Specialized in advanced data engineering and analytics.</div>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
-      <!-- SKILLS -->
-      <section class="section" id="skills" data-anim>
-        <h2>Skills</h2>
-        <div class="skills-icons">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt="Python" title="Python"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pandas.svg" alt="Pandas" title="Pandas"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pyspark.svg" alt="PySpark" title="PySpark"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/scikitlearn.svg" alt="scikit-learn" title="scikit-learn"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/sqlite.svg" alt="SQL" title="SQL"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg" alt="Linux" title="Linux"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftsqlserver.svg" alt="SQL Server" title="SQL Server"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg" alt="MySQL" title="MySQL"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/hive.svg" alt="Hive" title="Hive"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/hadoop.svg" alt="Hadoop" title="Hadoop"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mongodb.svg" alt="MongoDB" title="MongoDB"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apachekafka.svg" alt="Kafka" title="Kafka"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apacheairflow.svg" alt="Airflow" title="Airflow"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/databricks.svg" alt="Databricks" title="Databricks"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftazure.svg" alt="Azure" title="Azure"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonaws.svg" alt="AWS" title="AWS"/>
-          <img src="https://www.vectorlogo.zone/logos/microsoft_powerbi/microsoft_powerbi-icon.svg" alt="Power BI" title="Power BI"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tableau.svg" alt="Tableau" title="Tableau"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftexcel.svg" alt="Excel" title="Excel"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" title="GitHub"/>
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt="Git" title="Git"/>
+        <div class="timeline-year">
+          <div class="timeline-year-label">2020 — 2023</div>
+          <div class="timeline-year-group">
+            <div class="timeline-entry">
+              <span class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ltimindtree.svg" alt="LTIMindtree"></span>
+              <div class="timeline-body">
+                <div class="timeline-title">Data Engineer</div>
+                <div class="timeline-org">LTIMindtree, Hyderabad, India</div>
+                <div class="timeline-date">Oct 2020 – Jan 2023</div>
+                <ul>
+                  <li>Architected ETL pipelines (SSIS/SSMS) to centralize data into a star schema warehouse.</li>
+                  <li>Optimized SQL transformations and data models, ensured 99% uptime, automated with Airflow.</li>
+                  <li>Reduced pipeline runtime by 42% and enabled Power BI reporting via agile delivery.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="timeline-entry">
+              <span class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/arthashastra.svg" alt="Arthashastra Intelligence"></span>
+              <div class="timeline-body">
+                <div class="timeline-title">Data Analytics Engineer</div>
+                <div class="timeline-org">Arthashastra Intelligence, Hyderabad, India</div>
+                <div class="timeline-date">Jan 2020 – Oct 2020</div>
+                <ul>
+                  <li>Automated dataset preparation and preprocessing using Pandas/NumPy in Jupyter Notebooks.</li>
+                  <li>Created visualizations with Matplotlib & Seaborn, enabled insight with statistical analysis.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
-      <!-- More sections (Timeline, Certifications, Projects, Contact) below, each with data-anim for animation... -->
-      <!-- ...Paste full remaining sections with data-anim class, from previous code ... -->
-      <!-- Make sure to use similar data-anim logic on each section as above. Omitted here due to space, see your last answer for details. -->
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="section" id="certifications">
+      <h2>Certifications</h2>
+      <div class="certifications-row">
+        <div class="cert-card">
+          <img src="https://images.credly.com/size/340x340/images/6097937a-c25a-46b8-82bc-244bfb49b6a3/Microsoft_Azure_Data_Engineer_Associate-600x600.png" alt="Azure Data Engineer">
+          <div class="cert-title">Microsoft Certified Azure Data Engineer Associate</div>
+          <div class="cert-org">Microsoft</div>
+        </div>
+        <div class="cert-card">
+          <img src="https://images.credly.com/size/340x340/images/3c887c02-cb8e-46ec-b7c7-2bf8ab5f735c/databricks-data-engineer-associate-badge.png" alt="Databricks Data Engineer">
+          <div class="cert-title">Databricks Certified Data Engineer Associate</div>
+          <div class="cert-org">Databricks</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <h2>Projects</h2>
+      <div class="projects-container">
+        <div class="project-section">
+          <div class="project-title">Healthcare Revenue Cycle Management</div>
+          <div class="project-subtitle">Project Overview</div>
+          <div class="project-desc">Improved billing cycle efficiency by deploying an Azure-based scalable ELT pipeline.</div>
+          <div class="project-subtitle">Project Details</div>
+          <div class="project-details">
+            <ul>
+              <li>Designed a robust Azure pipeline leveraging parallel processing and secure credential configuration.</li>
+              <li>Enhancing both performance and data safety in healthcare billing.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="project-section">
+          <div class="project-title">Sustainable Energy and National Growth</div>
+          <div class="project-subtitle">Project Overview</div>
+          <div class="project-desc">Built Tableau dashboards visualizing sustainable energy’s impact on economic growth for 20+ countries.</div>
+          <div class="project-subtitle">Project Details</div>
+          <div class="project-details">
+            <ul>
+              <li>Clarified how sustainable energy trends affect GDP through interactive Tableau Story reports.</li>
+              <li>Explored multi-year datasets to inform policy and research audiences.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact-section">
+      <div class="contact-heading">Contact</div>
+      <div class="contact-methods">
+        <div class="contact-method">
+          <img class="contact-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gmail.svg" alt="Email">
+          <div class="contact-info"><a href="mailto:saiakhil.badampudi@gmail.com" style="color:inherit;">saiakhil.badampudi@gmail.com</a></div>
+        </div>
+        <div class="contact-method">
+          <img class="contact-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg" alt="LinkedIn">
+          <div class="contact-info"><a href="https://www.linkedin.com/in/ss-akhil-badampudi/" target="_blank" style="color:inherit;">LinkedIn</a></div>
+        </div>
+        <div class="contact-method">
+          <img class="contact-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub">
+          <div class="contact-info"><a href="https://github.com/ramavenkatsai" target="_blank" style="color:inherit;">GitHub</a></div>
+        </div>
+        <div class="contact-method">
+          <img class="contact-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/phone.svg" alt="Phone">
+          <div class="contact-info">+1 (315) 952 9764</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      &copy; 2025 Akhil Badampudi. Hosted on GitHub Pages.<br>
+      Certified Azure & Databricks Data Engineer Associate.
     </div>
   </div>
   <script>
-    // Welcome splash removal/transition
+    // Splash removal
     setTimeout(function() {
-      document.getElementById('welcome-splash').classList.add('hide');
-      setTimeout(function(){
-        document.getElementById('welcome-splash').style.display='none';
-        document.body.classList.remove('splash-active');
-        document.getElementById('main-content').style.visibility='visible';
-        // Main message animates in
-        setTimeout(function(){
-          document.getElementById('main-welcome-message').classList.add('animated');
-        }, 80);
-      }, 1200);
-    }, 3000);
-
-    // Intersection Observer for in-viewport animation
-    document.addEventListener("DOMContentLoaded", function() {
-      let obs = new window.IntersectionObserver(entries=>{
-        entries.forEach(entry=>{
-          if (entry.isIntersecting) entry.target.classList.add("in");
-        });
-      }, {threshold: 0.09});
-      document.querySelectorAll('[data-anim]').forEach(el=>{ obs.observe(el); });
-    });
-
-    // Navigation highlighting (paste as before)
+      document.getElementById('splash').style.display = 'none';
+      document.body.style.overflowY="auto";
+    }, 3400);
+    // Navigation highlighting
     const navLinks = document.querySelectorAll('.nav a');
     window.addEventListener('scroll', () => {
       const fromTop = window.scrollY + 70;
@@ -264,6 +354,8 @@
         }
       });
     });
+    // Collapsible project subsections (optional, for future expansion)
+    // (Not implemented since project details are not collapsible by spec request)
   </script>
 </body>
 </html>

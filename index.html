@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name | Portfolio</title>
+  <title>Akhil Badampudi | Data Engineer Portfolio</title>
   <style>
     :root {
       --primary: #4455ab;
@@ -25,7 +25,7 @@
       transition: background 0.3s, color 0.3s;
     }
     .container {
-      max-width: 900px;
+      max-width: 940px;
       margin: auto;
       padding: 2rem;
     }
@@ -35,15 +35,132 @@
       align-items: center;
       border-bottom: 1px solid var(--accent);
       padding-bottom: 1rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .profile-photo-wrapper {
+      width: 140px;
+      height: 140px;
+      overflow: hidden;
+      border-radius: 50%;
+      border: 4px solid var(--primary);
+      margin: 0 auto;
       margin-bottom: 1rem;
     }
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
     .about {
-      max-width: 600px;
-      margin: 2rem 0;
+      text-align: center;
+      max-width: 700px;
+      margin: 2.5rem auto 2rem auto;
+    }
+    .about h2 {
+      margin-top: 0;
+    }
+    .contact-links a {
+      margin: 0 8px;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 500;
+    }
+    .skills-section {
+      margin: 2.2rem auto 2.5rem auto;
+      max-width: 740px;
+      text-align: center;
+    }
+    .skills-icons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      margin-top: 1.2rem;
+    }
+    .skills-icons img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #e1e6ef;
+      padding: 3px;
+      box-shadow: 0 2px 8px rgba(68,85,171,0.07);
+    }
+    .timeline {
+      position: relative;
+      max-width: 850px;
+      margin: 3rem auto 2.4rem auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--primary);
+      opacity: 0.15;
+      transform: translateX(-50%);
+    }
+    .timeline-entry {
+      position: relative;
+      width: 50%;
+      padding: 1rem 2.1rem;
+      box-sizing: border-box;
+    }
+    .timeline-entry.left {
+      left: 0;
+      text-align: right;
+    }
+    .timeline-entry.right {
+      left: 50%;
+      text-align: left;
+    }
+    .timeline-entry .content {
+      background: var(--accent);
+      border-radius: 10px;
+      padding: 1.2rem 1.3rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.045);
+      position: relative;
+      min-width: 240px;
+      display: inline-block;
+      font-size: 1.04em;
+    }
+    .timeline-entry.left .content::after {
+      content: '';
+      position: absolute;
+      right: -10px;
+      top: 20px;
+      border-width: 7px;
+      border-style: solid;
+      border-color: transparent transparent transparent var(--accent);
+    }
+    .timeline-entry.right .content::after {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 20px;
+      border-width: 7px;
+      border-style: solid;
+      border-color: transparent var(--accent) transparent transparent;
+    }
+    .timeline-entry .date-range {
+      font-size: 0.97em;
+      color: #7b87a0;
+      font-style: italic;
+    }
+    .timeline-entry .org {
+      font-size: 1em;
+      font-weight: 600;
+      color: var(--primary);
     }
     .projects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.2rem;
     }
     .card {
@@ -56,106 +173,50 @@
     }
     .card:hover {
       transform: translateY(-4px) scale(1.025);
-      box-shadow: 0 6px 14px rgba(68,85,171,0.08);
+      box-shadow: 0 6px 14px rgba(68,85,171,0.09);
     }
     .card-title {
       margin-top: 0;
-      margin-bottom: 0.5rem;
       color: var(--primary);
+      margin-bottom: 0.5rem;
     }
     .toggle-btn {
       cursor: pointer;
       background: none;
       border: none;
-      font-size: 1.2em;
+      font-size: 1.25em;
       color: var(--primary);
       margin-left: 1rem;
+      border-radius: 5px;
+      transition: background 0.2s;
+      padding: 3px 8px;
+    }
+    .toggle-btn:hover {
+      background: var(--accent);
     }
     footer {
       text-align: center;
-      font-size: 0.95em;
-      margin-top: 2rem;
-      color: #999;
+      font-size: 0.98em;
+      margin-top: 2.2rem;
+      color: #888;
     }
-    @media (max-width: 600px) {
-      .container {
-        padding: 1rem;
-      }
-      .about {
-        margin: 1rem 0;
-      }
-      .projects {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 900px) {
+      .container { padding: 1rem; }
+      .timeline { max-width: 99vw; }
     }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div>
-        <h1>Your Name</h1>
-        <span>Software Developer • Lowell, MA</span>
-      </div>
-      <button class="toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme">🌙</button>
-    </header>
-
-    <section class="about">
-      <h2>About Me</h2>
-      <p>
-        Welcome! I’m <strong>Your Name</strong>, a passionate developer from Lowell, MA. I love building innovative solutions and sharing knowledge.
-        <br>
-        <strong>Contact:</strong>
-        <a href="mailto:your.email@example.com">Email</a> |
-        <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a> |
-        <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-      </p>
-    </section>
-
-    <section>
-      <h2>My Projects</h2>
-      <div class="projects" id="projectsList">
-        <!-- Example Project Card -->
-        <div class="card" onclick="toggleDetails(event, 'p1')">
-          <h3 class="card-title">Project One</h3>
-          <p>Short one-line description.</p>
-          <div id="details-p1" style="display:none; margin-top:0.5em;">
-            <p>More details about Project One: tech stack, challenges, outcomes.</p>
-            <a href="https://github.com/yourusername/project-one" target="_blank">View on GitHub</a>
-          </div>
-        </div>
-        <div class="card" onclick="toggleDetails(event, 'p2')">
-          <h3 class="card-title">Project Two</h3>
-          <p>Another quick project demo description.</p>
-          <div id="details-p2" style="display:none; margin-top:0.5em;">
-            <p>Details about Project Two: what you learned, what makes it unique.</p>
-            <a href="https://github.com/yourusername/project-two" target="_blank">View on GitHub</a>
-          </div>
-        </div>
-        <!-- Add more project cards as needed -->
-      </div>
-    </section>
-
-    <footer>
-      © 2025 Your Name. Hosted on GitHub Pages.
-    </footer>
-  </div>
-
-  <script>
-    // Light/Dark mode toggle
-    const toggleBtn = document.getElementById('themeToggle');
-    toggleBtn.addEventListener('click', () => {
-      const isDark = document.body.getAttribute('data-theme') === 'dark';
-      document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
-      toggleBtn.textContent = isDark ? '🌙' : '☀️';
-    });
-
-    // Collapsible project cards
-    function toggleDetails(event, id) {
-      event.stopPropagation();
-      const details = document.getElementById('details-' + id);
-      details.style.display = (details.style.display === 'none' || !details.style.display) ? 'block' : 'none';
-    }
-  </script>
-</body>
-</html>
+    @media (max-width: 700px) {
+      header { flex-direction: column; gap: 1rem; }
+      .timeline-entry, .timeline-entry.left, .timeline-entry.right {
+        width: 100%;
+        left: 0;
+        text-align: left;
+        padding: 1.1rem 0.7rem;
+      }
+      .timeline::before { left: 22px; }
+      .timeline-entry .content, .timeline-entry.left .content, .timeline-entry.right .content {
+        min-width: 0;
+        width: 95%;
+      }
+      .timeline-entry .content::after, .timeline-entry.left .content::after, .timeline-entry.right .content::after {
+        display: none;
+      }

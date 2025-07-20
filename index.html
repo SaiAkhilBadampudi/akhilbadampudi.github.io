@@ -49,12 +49,16 @@
       font-size: 2.75rem;
       font-weight: 900;
       letter-spacing: 0.05em;
-      margin-bottom: 0.6em;
+      margin-bottom: 0.9em;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 0.16em;
       animation: splashScaleIn 1.3s cubic-bezier(.6,2,.34,.96);
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
     }
     @keyframes splashScaleIn {
       0%{opacity:0; transform:scale(0.82);}
@@ -67,6 +71,7 @@
       font-weight: 500;
       letter-spacing: 0.01em;
       animation: fadeInSplashBlurb .9s 1.18s backwards;
+      margin-bottom: 3.8rem;
     }
     @keyframes fadeInSplashBlurb {
       0% { opacity: 0; transform: translateY(20px);}
@@ -79,16 +84,98 @@
     .google-dot {
       display:inline-block; width:0.47em; height:0.47em; border-radius:50%;
       margin-left:0.27em; margin-bottom:0.12em;
-      background:var(--google-blue);
+      background:var(--google-red);
       animation: bounceGoogleDot 1s infinite alternate cubic-bezier(.82,-0.27,.52,1.17);
       vertical-align:middle;
     }
     @keyframes bounceGoogleDot {
       0% { transform: translateY(0);}
-      100%{ transform: translateY(-6px);}
+      100%{ transform: translateY(-7px);}
     }
 
-    /* Welcome Section */
+    /* ETL/Processing Animation */
+    .etl-visual {
+      width: 72vw;
+      max-width: 520px;
+      min-width: 288px;
+      margin: 0 auto 2.6em auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      user-select: none;
+    }
+    .etl-stage {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: none;
+      border: none;
+    }
+    .etl-icon {
+      width: 44px; height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+    }
+    .etl-label {
+      font-size: 1.08rem;
+      font-weight: bold;
+      color: var(--google-blue);
+      margin-top: 0.39em;
+      letter-spacing:0.04em;
+      text-shadow: 0 0 1px #fff;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    /* Animated processing dots */
+    .etl-progress {
+      flex: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      margin-bottom: 7px;
+    }
+    .etl-dot {
+      width: 13px; height: 13px; border-radius: 50%;
+      background: var(--google-yellow);
+      opacity: 0.54;
+      animation: etlDotMove 1.8s infinite;
+    }
+    .etl-dot:nth-child(2) { animation-delay: .3s;}
+    .etl-dot:nth-child(3) { animation-delay: .6s;}
+    .etl-dot:nth-child(4) { animation-delay: .9s;}
+    @keyframes etlDotMove {
+      0% { opacity: 0.32; transform: scale(1);}
+      25% { opacity: .72; background: var(--google-yellow);transform: scale(1.35);}
+      50% { opacity: .94; background: var(--google-green);transform: scale(1);}
+      70% { opacity: .72; background: var(--google-blue);}
+      100% { opacity: 0.32; background: var(--google-yellow);transform: scale(1);}
+    }
+    .etl-arrow {
+      width:34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom:27px;
+    }
+    .etl-arrow svg {
+      width:22px; height:22px;
+      filter: drop-shadow(0 0 2px #34A85344);
+      stroke: var(--google-red);
+      stroke-width: 2.3;
+      fill: none;
+      animation: arrowInETL 1.4s infinite alternate;
+    }
+    @keyframes arrowInETL {
+      0% {stroke: var(--google-red);}
+      100% {stroke: var(--google-blue);}
+    }
+
+    /* Welcome Section -- no boundary, fills viewport */
     #welcome-section {
       width: 100vw;
       min-height: 100vh;
@@ -102,47 +189,47 @@
       padding-top: 70px;
       position: relative;
     }
-    .welcome-note {
-      font-size:2.2rem;
-      font-weight:900;
-      background: var(--paper); color: var(--text-head);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      padding:1.1em 2em;
-      letter-spacing:0.025em;
-      width: 98vw; 
-      max-width: 950px;
-      text-align:center;
+    .welcome-hero {
+      background: none;
+      box-shadow: none;
+      border-radius: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      width: 100vw;
+      max-width: 100vw;
     }
     .welcome-blurb {
       font-size:1.22rem; font-weight:500; color: var(--google-blue);
+      margin-bottom: 2.2rem;
     }
     #scroll-down-arrow {
-      margin-top: 3.6rem;
+      margin-top: 2.8rem;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
       animation: arrowBounce 1.3s infinite alternate;
+      background: none;
+      border: none;
     }
     @keyframes arrowBounce {
       0% { transform: translateY(0);}
-      100% { transform: translateY(15px);}
+      100% { transform: translateY(16px);}
     }
     .down-arrow {
       font-size: 2.3rem;
       color: var(--google-red);
       transition: color 0.24s;
+      background: none;
+      border: none;
     }
     .down-arrow:hover {
       color: var(--google-blue);
     }
 
-    /* Navigation, Section, Content Styles --- Same as before */
+    /* Navigation, Section, Content Styles --- unchanged */
     .nav { position: fixed; width:100vw; top:0; left:0; background:var(--accent);
       display:flex; justify-content: center; align-items:center; gap:2.1rem; height:60px; z-index:120;
       box-shadow: 0 3px 12px rgba(140,140,250,0.08);}
@@ -242,6 +329,7 @@
       .cert-card img{width:54px;height:54px;}
       .contact-icon{width:26px;height:26px;}
       #welcome-section{padding-top: 62px;}
+      .etl-visual { width: 90vw; }
     }
   </style>
 </head>
@@ -263,7 +351,7 @@
       <span class="google-color-b">u</span>
       <span class="google-color-g">d</span>
       <span class="google-color-y">i</span>
-      <span class="google-dot" style="background:var(--google-red);"></span>
+      <span class="google-dot"></span>
     </span>
     <span class="splash-blurb">Hi, Welcome to Akhil Badampudi's Website</span>
   </div>
@@ -279,9 +367,9 @@
     <a href="#contact-section">Contact</a>
   </nav>
 
-  <!-- WELCOME SECTION is the first and full viewport! -->
+  <!-- WELCOME SECTION: FULL BLEED, NO CONTAINER, ETL ANIMATION -->
   <section id="welcome-section">
-    <div class="welcome-note">
+    <div class="welcome-hero">
       <div>
         <span class="google-color-b">A</span>
         <span class="google-color-r">k</span>
@@ -298,10 +386,37 @@
         <span class="google-color-b">u</span>
         <span class="google-color-g">d</span>
         <span class="google-color-y">i</span>
-        <span class="google-dot" style="background:var(--google-red);"></span>
+        <span class="google-dot"></span>
       </div>
       <div class="welcome-blurb">
         Hi, Welcome to Akhil Badampudi's Website
+      </div>
+      <!-- ETL Data Processing Animation -->
+      <div class="etl-visual" aria-label="ETL animation, simulated">
+        <div class="etl-stage">
+          <div class="etl-icon"><svg viewBox="0 0 32 32" width="44" height="44"><circle cx="16" cy="16" r="15" fill="#EA4335" /><text x="16" y="21" font-family="Inter,Arial,sans-serif" font-size="15" fill="#fff" text-anchor="middle">E</text></svg></div>
+          <div class="etl-label">Extract</div>
+        </div>
+        <div class="etl-arrow">
+          <svg viewBox="0 0 22 22"><polyline points="5 7, 12 14, 17 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="etl-stage">
+          <div class="etl-icon"><svg viewBox="0 0 32 32" width="44" height="44"><circle cx="16" cy="16" r="15" fill="#FBBC05" /><text x="16" y="21" font-family="Inter,Arial,sans-serif" font-size="15" fill="#fff" text-anchor="middle">T</text></svg></div>
+          <div class="etl-label">Transform</div>
+        </div>
+        <div class="etl-arrow">
+          <svg viewBox="0 0 22 22"><polyline points="5 7, 12 14, 17 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="etl-stage">
+          <div class="etl-icon"><svg viewBox="0 0 32 32" width="44" height="44"><circle cx="16" cy="16" r="15" fill="#34A853" /><text x="16" y="21" font-family="Inter,Arial,sans-serif" font-size="15" fill="#fff" text-anchor="middle">L</text></svg></div>
+          <div class="etl-label">Load</div>
+        </div>
+      </div>
+      <div class="etl-progress">
+        <div class="etl-dot"></div>
+        <div class="etl-dot"></div>
+        <div class="etl-dot"></div>
+        <div class="etl-dot"></div>
       </div>
     </div>
     <a id="scroll-down-arrow" href="#about" aria-label="Scroll down to About section">

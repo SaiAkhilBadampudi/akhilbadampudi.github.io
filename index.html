@@ -147,15 +147,12 @@
       display:flex; justify-content: center; align-items:center; gap:2.1rem; height:60px; z-index:120;
       box-shadow: 0 3px 12px rgba(140,140,250,0.08);}
     .nav a {
-    /* ...existing nav link styles... */
-      transition: box-shadow 0.14s, background 0.16s, transform 0.17s;
-    /* Add any padding/background if needed */
-  }
+      font-family: 'Google Sans', 'Inter', Arial, sans-serif;
+      color:var(--google-blue); font-weight:700; letter-spacing:0.01em; padding:0.72rem 1.27rem; border-radius:8px; font-size:1.10rem;
+      background: none; border:none; transition: background 0.17s, color 0.18s, transform 0.13s;
+    }
     .nav a.active, .nav a:hover {
-       box-shadow: 0 9px 21px #EA433533, 0 3px 7px #FBBC0537;
-      background: #F2F2E9;
-      color: var(--text-head);
-      transform: scale(1.025);
+      background: var(--google-yellow); color: var(--text-head); transform: scale(1.09);
     }
     .container { max-width:1200px; margin:0 auto; margin-top:80px; padding:0; }
 

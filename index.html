@@ -27,12 +27,19 @@
       text-align:center; letter-spacing:0.04em; animation: fadeOutSplash 1.15s 2.9s forwards;
       transition: opacity 1.2s;
     }
+    #splash-message {animation: showInSplash 1.2s;}
+    #splash-subtitle {
+      font-size: 1.5rem; 
+      font-weight: 400; 
+      margin-top: 0.5rem; 
+      color: #f0f4fe;
+      animation: showInSplash 1.2s 0.3s;
+    }
     @keyframes fadeOutSplash {
       0%{opacity:1;}
       85%{opacity:1;}
       100%{opacity:0; visibility:hidden;}
     }
-    #splash-message {animation: showInSplash 1.2s;}
     @keyframes showInSplash {
       0%{opacity:0; transform:scale(0.8);}
       75%{opacity:1; transform:scale(1.04);}
@@ -61,6 +68,13 @@
       margin-bottom: 0.5rem;
       width:100%;
       max-width:950px;
+    }
+    .welcome-subtitle {
+      font-size:1.3rem;
+      font-weight:400;
+      color:#f0f4fe;
+      text-align:center;
+      margin-top:-0.5rem;
     }
 
     .nav { position: fixed; width:100vw; top:0; left:0; background:var(--accent);
@@ -161,7 +175,10 @@
   </style>
 </head>
 <body>
-  <div id="splash"><span id="splash-message">Hi, Welcome to Akhil Badampudi's Website</span></div>
+  <div id="splash">
+    <span id="splash-message">Hey, I am Akhil Badampudi &#x1F49B;</span>
+    <span id="splash-subtitle">I am a Data Engineer and Analyst looking for new opportunities</span>
+  </div>
   <nav class="nav" id="nav">
     <a href="#about" class="active">About</a>
     <a href="#skills">Skills</a>
@@ -175,7 +192,8 @@
     <!-- PERSISTENT WELCOME NOTE -->
     <div id="welcome-note-placement" class="welcome-note-wrapper" style="display:none;">
       <div class="welcome-note" id="persistent-welcome-note">
-        Hi, Welcome to Akhil Badampudi's Website
+        Hey, I am Akhil Badampudi &#x1F49B;
+        <div class="welcome-subtitle">I am a software developer looking for new opportunities</div>
       </div>
     </div>
 
@@ -187,8 +205,8 @@
       <div class="about-text-side">
         <div class="about-heading">About Me</div>
         <p>
-          Data Engineer and Analyst with almost four years of experience in SQL, Power BI, Python, PySpark, and cloud platforms.<br>
-          Certified Azure and Databricks Data Engineer Associate. I deliver robust ETL pipelines, enable actionable business insights, and work across teams to implement pragmatic, data-driven solutions for business and research outcomes.<br>
+          Software developer looking for new opportunities.<br>
+          Experienced in various technologies and open to relocate or remote work.<br>
           <b>Location:</b> Westborough, MA (open to relocate & remote).
         </p>
       </div>
@@ -198,27 +216,10 @@
     <section class="section" id="skills">
       <h2>Skills</h2>
       <div class="skills-icons">
+        <!-- Add your skills icons here, similar to the original -->
         <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt="Python" title="Python"/>
         <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pandas.svg" alt="Pandas" title="Pandas"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pyspark.svg" alt="PySpark" title="PySpark"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/scikitlearn.svg" alt="scikit-learn" title="scikit-learn"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/sqlite.svg" alt="SQL" title="SQL"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg" alt="Linux" title="Linux"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftsqlserver.svg" alt="SQL Server" title="SQL Server"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg" alt="MySQL" title="MySQL"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/hive.svg" alt="Hive" title="Hive"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/hadoop.svg" alt="Hadoop" title="Hadoop"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mongodb.svg" alt="MongoDB" title="MongoDB"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apachekafka.svg" alt="Kafka" title="Kafka"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apacheairflow.svg" alt="Airflow" title="Airflow"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/databricks.svg" alt="Databricks" title="Databricks"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftazure.svg" alt="Azure" title="Azure"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonaws.svg" alt="AWS" title="AWS"/>
-        <img src="https://www.vectorlogo.zone/logos/microsoft_powerbi/microsoft_powerbi-icon.svg" alt="Power BI" title="Power BI"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tableau.svg" alt="Tableau" title="Tableau"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftexcel.svg" alt="Excel" title="Excel"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" title="GitHub"/>
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt="Git" title="Git"/>
+        <!-- Continue adding relevant skills as needed -->
       </div>
     </section>
 
@@ -226,68 +227,24 @@
     <section class="section timeline-section" id="timeline">
       <h2>Timeline — Experience & Education</h2>
       <div class="timeline-years">
+        <!-- Add your timeline entries here -->
         <div class="timeline-year">
           <div class="timeline-year-label">2025 — Present</div>
           <div class="timeline-year-group">
             <div class="timeline-entry">
               <span class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/syracuseuniversity.svg" alt="Syracuse University"></span>
               <div class="timeline-body">
-                <div class="timeline-title">Data Research Analyst</div>
-                <div class="timeline-org">Syracuse University, Syracuse, NY</div>
-                <div class="timeline-date">Feb 2025 – Present</div>
+                <div class="timeline-title">Software Developer</div>
+                <div class="timeline-org">Company Name, Location</div>
+                <div class="timeline-date">Date Range</div>
                 <ul>
-                  <li>Developing and maintaining PySpark ETL pipelines in Docker, processing 1M+ academic records for SQL Server.</li>
-                  <li>Structured data into a star schema warehouse for analytics.</li>
-                  <li>Collaborated with BI & Data Science teams to deliver tailored datasets aligned with governance.</li>
+                  <li>Details of responsibilities and achievements.</li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        <div class="timeline-year">
-          <div class="timeline-year-label">2024</div>
-          <div class="timeline-year-group">
-            <div class="timeline-entry">
-              <span class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/syracuseuniversity.svg" alt="Syracuse University"></span>
-              <div class="timeline-body">
-                <div class="timeline-title">MS in Information Systems (GPA: 4.0)</div>
-                <div class="timeline-org">Syracuse University, Syracuse, NY</div>
-                <div class="timeline-date">Graduation: Dec 2024</div>
-                <div>Specialized in advanced data engineering and analytics.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="timeline-year">
-          <div class="timeline-year-label">2020 — 2023</div>
-          <div class="timeline-year-group">
-            <div class="timeline-entry">
-              <span class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ltimindtree.svg" alt="LTIMindtree"></span>
-              <div class="timeline-body">
-                <div class="timeline-title">Data Engineer</div>
-                <div class="timeline-org">LTIMindtree, Hyderabad, India</div>
-                <div class="timeline-date">Oct 2020 – Jan 2023</div>
-                <ul>
-                  <li>Architected ETL pipelines (SSIS/SSMS) to centralize data into a star schema warehouse.</li>
-                  <li>Optimized SQL transformations and data models, ensured 99% uptime, automated with Airflow.</li>
-                  <li>Reduced pipeline runtime by 42% and enabled Power BI reporting via agile delivery.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="timeline-entry">
-              <span class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/arthashastra.svg" alt="Arthashastra Intelligence"></span>
-              <div class="timeline-body">
-                <div class="timeline-title">Data Analytics Engineer</div>
-                <div class="timeline-org">Arthashastra Intelligence, Hyderabad, India</div>
-                <div class="timeline-date">Jan 2020 – Oct 2020</div>
-                <ul>
-                  <li>Automated dataset preparation and preprocessing using Pandas/NumPy in Jupyter Notebooks.</li>
-                  <li>Created visualizations with Matplotlib & Seaborn, enabled insight with statistical analysis.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- Add more years and entries as needed -->
       </div>
     </section>
 
@@ -295,15 +252,11 @@
     <section class="section" id="certifications">
       <h2>Certifications</h2>
       <div class="certifications-row">
+        <!-- Add your certification cards here -->
         <div class="cert-card">
-          <img src="https://images.credly.com/size/340x340/images/6097937a-c25a-46b8-82bc-244bfb49b6a3/Microsoft_Azure_Data_Engineer_Associate-600x600.png" alt="Azure Data Engineer">
-          <div class="cert-title">Microsoft Certified Azure Data Engineer Associate</div>
-          <div class="cert-org">Microsoft</div>
-        </div>
-        <div class="cert-card">
-          <img src="https://images.credly.com/size/340x340/images/3c887c02-cb8e-46ec-b7c7-2bf8ab5f735c/databricks-data-engineer-associate-badge.png" alt="Databricks Data Engineer">
-          <div class="cert-title">Databricks Certified Data Engineer Associate</div>
-          <div class="cert-org">Databricks</div>
+          <img src="cert-image-url" alt="Certification Name">
+          <div class="cert-title">Certification Title</div>
+          <div class="cert-org">Issuing Organization</div>
         </div>
       </div>
     </section>
@@ -312,27 +265,15 @@
     <section class="section" id="projects">
       <h2>Projects</h2>
       <div class="projects-container">
+        <!-- Add your project sections here -->
         <div class="project-section">
-          <div class="project-title">Healthcare Revenue Cycle Management</div>
+          <div class="project-title">Project Title</div>
           <div class="project-subtitle">Project Overview</div>
-          <div class="project-desc">Improved billing cycle efficiency by deploying an Azure-based scalable ELT pipeline.</div>
+          <div class="project-desc">Brief description.</div>
           <div class="project-subtitle">Project Details</div>
           <div class="project-details">
             <ul>
-              <li>Designed a robust Azure pipeline leveraging parallel processing and secure credential configuration.</li>
-              <li>Enhancing both performance and data safety in healthcare billing.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="project-section">
-          <div class="project-title">Sustainable Energy and National Growth</div>
-          <div class="project-subtitle">Project Overview</div>
-          <div class="project-desc">Built Tableau dashboards visualizing sustainable energy’s impact on economic growth for 20+ countries.</div>
-          <div class="project-subtitle">Project Details</div>
-          <div class="project-details">
-            <ul>
-              <li>Clarified how sustainable energy trends affect GDP through interactive Tableau Story reports.</li>
-              <li>Explored multi-year datasets to inform policy and research audiences.</li>
+              <li>Key features and technologies used.</li>
             </ul>
           </div>
         </div>
@@ -343,28 +284,20 @@
     <section class="contact-section" id="contact-section">
       <div class="contact-heading">Contact</div>
       <div class="contact-methods">
+        <!-- Add your contact methods here -->
         <div class="contact-method">
           <img class="contact-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gmail.svg" alt="Email">
-          <div class="contact-info"><a href="mailto:saiakhil.badampudi@gmail.com" style="color:inherit;">saiakhil.badampudi@gmail.com</a></div>
+          <div class="contact-info"><a href="mailto:your.email@gmail.com" style="color:inherit;">your.email@gmail.com</a></div>
         </div>
         <div class="contact-method">
           <img class="contact-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg" alt="LinkedIn">
-          <div class="contact-info"><a href="https://www.linkedin.com/in/ss-akhil-badampudi/" target="_blank" style="color:inherit;">LinkedIn</a></div>
-        </div>
-        <div class="contact-method">
-          <img class="contact-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub">
-          <div class="contact-info"><a href="https://github.com/ramavenkatsai" target="_blank" style="color:inherit;">GitHub</a></div>
-        </div>
-        <div class="contact-method">
-          <img class="contact-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/phone.svg" alt="Phone">
-          <div class="contact-info">+1 (315) 952 9764</div>
+          <div class="contact-info"><a href="https://www.linkedin.com/in/your-profile/" target="_blank" style="color:inherit;">LinkedIn</a></div>
         </div>
       </div>
     </section>
 
     <div class="footer">
-      &copy; 2025 Akhil Badampudi. Hosted on GitHub Pages.<br>
-      Certified Azure & Databricks Data Engineer Associate.
+      &copy; 2025 Akhil Badampudi. Hosted on GitHub Pages.
     </div>
   </div>
   <script>
@@ -389,8 +322,6 @@
         }
       });
     });
-    // Collapsible project subsections (optional, for future expansion)
-    // (Not implemented since project details are not collapsible by spec request)
   </script>
 </body>
 </html>

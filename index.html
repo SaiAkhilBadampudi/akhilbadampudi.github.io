@@ -22,8 +22,7 @@
     html, body {
       margin: 0; padding: 0;
       height: 100%; width: 100%;
-      background: var(--background);
-      color: var(--text-main);
+      background: var(--background); color: var(--text-main);
       font-family: 'Google Sans', 'Inter', 'Segoe UI', Arial, sans-serif;
       scroll-behavior: smooth;
     }
@@ -47,19 +46,15 @@
       100%{opacity:0; visibility:hidden;}
     }
     .splash-message {
-      font-size: clamp(2.7rem, 5vw, 5.5rem);
+      font-size: 2.75rem;
       font-weight: 900;
       letter-spacing: 0.05em;
-      margin-bottom: 0.9em;
+      margin-bottom: 0.6em;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 0.16em;
       animation: splashScaleIn 1.3s cubic-bezier(.6,2,.34,.96);
-      background: none;
-      border: none;
-      box-shadow: none;
-      padding: 0;
     }
     @keyframes splashScaleIn {
       0%{opacity:0; transform:scale(0.82);}
@@ -68,11 +63,10 @@
     }
     .splash-blurb {
       color: var(--google-blue);
-      font-size: clamp(1.2rem, 2.8vw, 2.2rem);
+      font-size: 1.22rem;
       font-weight: 500;
       letter-spacing: 0.01em;
       animation: fadeInSplashBlurb .9s 1.18s backwards;
-      margin-bottom: 3.8rem;
     }
     @keyframes fadeInSplashBlurb {
       0% { opacity: 0; transform: translateY(20px);}
@@ -83,16 +77,17 @@
     .google-color-y { color: var(--google-yellow);}
     .google-color-g { color: var(--google-green);}
     .google-dot {
-      display:inline-block; width:0.8em; height:0.8em; border-radius:50%;
+      display:inline-block; width:0.47em; height:0.47em; border-radius:50%;
       margin-left:0.27em; margin-bottom:0.12em;
-      background:var(--google-red);
+      background:var(--google-blue);
       animation: bounceGoogleDot 1s infinite alternate cubic-bezier(.82,-0.27,.52,1.17);
       vertical-align:middle;
     }
     @keyframes bounceGoogleDot {
       0% { transform: translateY(0);}
-      100%{ transform: translateY(-15px);}
+      100%{ transform: translateY(-6px);}
     }
+
     /* Welcome Section */
     #welcome-section {
       width: 100vw;
@@ -107,174 +102,47 @@
       padding-top: 70px;
       position: relative;
     }
-    .welcome-hero {
-      background: none;
-      box-shadow: none;
-      border-radius: 0;
+    .welcome-note {
+      font-size:2.2rem;
+      font-weight:900;
+      background: var(--paper); color: var(--text-head);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding:1.1em 2em;
+      letter-spacing:0.025em;
+      width: 98vw; 
+      max-width: 950px;
+      text-align:center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2vw;
-      width: 100vw;
-      max-width: 100vw;
-      margin-bottom: 2vw;
-    }
-    .welcome-hero .hero-name {
-      font-size: clamp(3rem, 10vw, 7rem);
-      font-weight: 900;
-      letter-spacing: .028em;
-      text-align: center;
-      margin-bottom: 0.55em;
-    }
-    .welcome-hero .hero-name span {
-      display: inline-block;
-      font-size: inherit;
-      font-family: 'Google Sans', 'Inter', Arial, sans-serif;
-    }
-    .welcome-hero .google-dot {
-      width:1em; height:1em; margin-bottom:0.16em;
+      gap: 10px;
     }
     .welcome-blurb {
-      font-size: clamp(1.3rem, 3.7vw, 2.5rem);
-      font-weight: 600;
-      color: var(--google-blue);
-      text-align: center;
-      margin-bottom: clamp(1rem, 3vw, 2.7rem);
-      margin-top: 0.6vw;
-      letter-spacing: .018em;
+      font-size:1.22rem; font-weight:500; color: var(--google-blue);
     }
-    /* ETL Animation - Large and Modernized */
-    .etl-visual {
-      width: 90vw;
-      max-width: 1120px;
-      min-width: 300px;
-      margin: 0 auto 2em auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 4vw;
-      position: relative;
-      user-select: none;
-    }
-    .etl-stage {
-      flex: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: clamp(95px,14vw,200px);
-      max-width: 270px;
-      background: none;
-      border: none;
-    }
-    .etl-icon {
-      width: clamp(76px,8vw,140px); height: clamp(76px,8vw,140px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: none;
-    }
-    .etl-label {
-      font-size: clamp(1.1rem,2.8vw,2.25rem);
-      font-weight: 800;
-      color: var(--google-blue);
-      margin-top: 0.65em;
-      letter-spacing:.05em;
-      text-shadow: 0 0 1px #fff;
-      font-family: 'Google Sans', 'Inter', Arial, sans-serif;
-      text-align: center;
-    }
-    .etl-stage:nth-child(5) .etl-label { color: var(--google-green);}
-    .etl-stage:nth-child(3) .etl-label { color: var(--google-yellow);}
-    /* Animated processing dots */
-    .etl-progress {
-      position: relative;
-      flex: none;
-      display: flex;
-      align-items: center;
-      gap: 1.2vw;
-      margin-top: 2vw;
-      margin-bottom: 13px;
-    }
-    .etl-dot {
-      width: clamp(18px,2vw,30px); height: clamp(18px,2vw,30px); border-radius: 50%;
-      background: var(--google-yellow);
-      opacity: 0.54;
-      animation: etlDotMove 2.3s infinite;
-    }
-    .etl-dot:nth-child(2) { animation-delay: .3s;}
-    .etl-dot:nth-child(3) { animation-delay: .6s;}
-    .etl-dot:nth-child(4) { animation-delay: .9s;}
-    @keyframes etlDotMove {
-      0% { opacity: 0.32; transform: scale(1);}
-      22% { opacity: .72; background: var(--google-yellow);transform: scale(1.35);}
-      50% { opacity: .94; background: var(--google-green);transform: scale(1);}
-      75% { opacity: .72; background: var(--google-blue);}
-      100% { opacity: 0.32; background: var(--google-yellow);transform: scale(1);}
-    }
-    .etl-arrow {
-      width: clamp(37px,5vw,90px);
-      min-width: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: clamp(10px,1.8vw,25px);
-    }
-    .etl-arrow svg {
-      width: 100%; height: 100%;
-      min-width: 25px;
-      filter: drop-shadow(0 0 3px #34A85344);
-      stroke: var(--google-yellow);
-      stroke-width: 5;
-      fill: none;
-      animation: arrowColor 2.2s infinite alternate;
-      /* simulate flow left to right */
-    }
-    @keyframes arrowColor {
-      0% { stroke: var(--google-yellow);}
-      30% { stroke: var(--google-green);}
-      70% { stroke: var(--google-blue);}
-      100% { stroke: var(--google-yellow);}
-    }
-    /* Down arrow */
     #scroll-down-arrow {
-      margin-top: 3vw;
+      margin-top: 3.6rem;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      animation: arrowBounce 1.25s infinite alternate;
-      background: none;
-      border: none;
+      animation: arrowBounce 1.3s infinite alternate;
     }
     @keyframes arrowBounce {
       0% { transform: translateY(0);}
-      100% { transform: translateY(19px);}
+      100% { transform: translateY(15px);}
     }
     .down-arrow {
-      font-size: clamp(2.5rem,6vw,4rem);
+      font-size: 2.3rem;
       color: var(--google-red);
       transition: color 0.24s;
-      background: none;
-      border: none;
-      text-shadow: 0 2px 10px #fff;
-      line-height: 1;
     }
     .down-arrow:hover {
       color: var(--google-blue);
     }
-    @media (max-width: 1000px) {
-      .welcome-hero .hero-name   { font-size: clamp(2.1rem,10vw,5rem);}
-      .etl-label { font-size: clamp(1.2rem,4vw,1.7rem);}
-      .etl-arrow, .etl-icon { max-width:80px; }
-    }
-    @media (max-width: 600px) {
-      .welcome-hero .hero-name  { font-size: clamp(2.1rem,12vw,3.6rem);}
-      .welcome-blurb { font-size: clamp(1rem,4vw,1.5rem);}
-      .etl-label { font-size: clamp(1rem, 5vw, 1.2rem);}
-      .etl-arrow, .etl-icon { max-width:56px;}
-      .etl-visual{gap:2vw;}
-    }
-    /* --- All your site content below as normal --- */
+
+    /* Navigation, Section, Content Styles --- Same as before */
     .nav { position: fixed; width:100vw; top:0; left:0; background:var(--accent);
       display:flex; justify-content: center; align-items:center; gap:2.1rem; height:60px; z-index:120;
       box-shadow: 0 3px 12px rgba(140,140,250,0.08);}
@@ -287,7 +155,94 @@
       background: var(--google-yellow); color: var(--text-head); transform: scale(1.09);
     }
     .container { max-width:1200px; margin:0 auto; margin-top:80px; padding:0; }
-    /* ...etc... (rest of your site's styles remain unchanged) */
+
+    .about-split {
+      display: flex; align-items: center; justify-content: center; background: var(--paper); border-radius: 26px;
+      box-shadow: var(--shadow); margin:3.5rem 0; min-height: 330px;
+    }
+    .about-photo-side { flex:1; display:flex; justify-content:center; align-items:center; min-width:220px; }
+    .profile-photo-wrapper { width:210px; height:210px; overflow:hidden; border-radius:50%; border:6px solid var(--google-blue); margin:2.5rem; background: var(--accent);}
+    .profile-photo { width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; transition:transform 0.33s;}
+    .profile-photo-wrapper:hover .profile-photo { transform: scale(1.11) rotate(-5deg);}
+    .about-text-side { flex:2; display: flex; flex-direction:column; justify-content: center; align-items: flex-start; padding:1.7rem 2.2rem 1.7rem 0;}
+    .about-heading { width:100%; text-align:center; font-size:2.3rem; color:var(--google-blue); letter-spacing:0.03em; font-weight:900; margin-bottom:16px;}
+    .about-text-side p { margin:0; padding:0; font-size:1.22rem; color: var(--text-main); text-align:left; line-height:1.67; padding-right:0.3rem;}
+
+    .section {margin:3.2rem 0; background:var(--paper); border-radius:21px; box-shadow:var(--shadow);}
+    .section h2 { text-align:center; color:var(--google-blue); font-size:2.13rem; letter-spacing:0.06em; font-weight:900; margin-bottom:1.5rem; margin-top: 0; padding-top:2.1rem;}
+    .skills-icons {display:flex; flex-wrap:wrap; gap:34px; justify-content:center; align-items:center; padding-bottom:2.0rem;}
+    .skills-icons img {
+      width:85px; height:85px; border-radius:22px; background:var(--accent);
+      border:3.5px solid #4285F4bb; box-shadow: 0 4px 18px #34A85322;
+      padding:10px; filter: grayscale(0) brightness(1.09);
+      transition: box-shadow 0.23s, border 0.22s, background 0.17s, transform 0.17s, filter 0.18s;
+      object-fit:contain;
+    }
+    .skills-icons img:hover, .timeline-dot img:hover, .cert-card img:hover, .contact-icon:hover {
+      box-shadow:0 8px 40px #FBBC0560, 0 2px 22px #34A85355;
+      border:3.5px solid var(--google-red);
+      background: #FAF5F0;
+      transform:scale(1.17) rotate(6deg);
+      filter: brightness(1.23) saturate(1.18);
+      z-index:2;
+    }
+    .timeline-years { display:flex; flex-direction:column; gap:38px; padding-bottom:2.1rem; }
+    .timeline-year { margin-left: 1.6rem;}
+    .timeline-year-label { font-size:1.23rem; color:var(--google-red); font-weight:800; margin-bottom:20px; }
+    .timeline-year-group { display: flex; flex-direction: column; gap: 24px; margin-left:40px;}
+    .timeline-entry {
+      display:flex; align-items:center; gap:23px; background:var(--accent);
+      border-radius:14px; box-shadow:0 2px 10px #4285F444; padding:1.14rem 1.11rem;
+      transition: box-shadow 0.17s, background 0.18s, transform 0.16s;
+    }
+    .timeline-entry:hover { box-shadow:0 12px 34px #34A85366, 0 2px 14px #FBBC0555; background:#f4fef7; transform:scale(1.05);}
+    .timeline-dot {height: 58px; min-width:58px; background:var(--google-yellow); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 9px #FBBC05AD;}
+    .timeline-dot img {width:33px; height:33px; border-radius:8px;}
+    .timeline-body {display:flex;flex-direction:column;}
+    .timeline-title {font-size:1.11rem; font-weight:700; color:var(--google-blue);}
+    .timeline-org {font-size:1.03rem; font-weight:600; color:var(--google-green);}
+    .timeline-date {font-size:1.01rem; color:var(--text-subtle); margin-bottom:3px;}
+    .timeline-body ul { margin:0.4em 0 0 18px; padding:0; }
+
+    .certifications-row { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin-top:2.2rem; padding-bottom:2.1rem;}
+    .cert-card {
+      background:linear-gradient(120deg,#FDF6DF 0%,#E3F6E3 100%);
+      border-radius:18px; padding:1.18rem 1.6rem;
+      box-shadow: 0 2.5px 11px #FBBC0544;
+      max-width:310px; text-align:center;
+      display:flex; flex-direction:column; align-items:center;
+      min-width:210px;
+      transition: box-shadow 0.18s, transform 0.14s;
+    }
+    .cert-card img { width:74px; height:74px; border-radius:11px; background:var(--accent); margin-bottom:10px;}
+    .cert-title {margin-top:0.5em; color:var(--text-head); font-weight:700; font-size:1.05rem;}
+    .cert-org {color:var(--google-blue); font-size:0.98rem;}
+    .cert-card:hover { box-shadow:0 12px 23px #34A85355,0 3px 8px #FBBC0555; transform:scale(1.07) rotate(-2deg);}
+
+    .projects-container { display: flex; flex-direction: column; gap:33px; margin-top:2.03rem; }
+    .project-section { background: var(--accent); border-radius:14px; padding:1.21rem 1.2rem 1.07rem 1.3rem; box-shadow:0 2px 11px #4285F433; transition: box-shadow 0.14s, background 0.16s, transform 0.17s;}
+    .project-section:hover { box-shadow:0 9px 21px #EA433533,0 3px 7px #FBBC0537; background: #F2F2E9; transform:scale(1.025);}
+    .project-title { font-size:1.22rem; color:var(--google-blue); font-weight:700; margin-bottom:7px;}
+    .project-subtitle { font-size:1.07rem; color:var(--google-red); margin-bottom:7px;}
+    .project-desc { font-size:1.08rem; color:var(--text-main); margin:0.45em 0;}
+    .project-details ul {margin:7px 0 0 18px; padding:0;}
+
+    .contact-section { background: var(--paper); border-radius:18px; padding:2.05rem 1.4rem 1.9rem 1.4rem; margin:3.1rem 0 2.1rem 0; display:flex; flex-direction:column; align-items:center; box-shadow:var(--shadow);}
+    .contact-heading { text-align:center; color:var(--google-blue); font-size:2.07rem; font-weight:900; margin-bottom:1.2rem;}
+    .contact-methods { display:flex; flex-wrap:wrap; gap: 40px; justify-content:center;}
+    .contact-method { display: flex; align-items: center; gap: 13px; background:var(--accent); border-radius:11px; padding:0.95em 1.35em; transition: box-shadow 0.17s, background 0.16s, transform 0.15s;}
+    .contact-method:hover { background: #F2F2E9; box-shadow:0 8px 21px #4285F422, 0 1.5px 5px #FBBC0522; transform: scale(1.07) rotate(-3deg);}
+    .contact-icon { width: 34px; height: 34px; border-radius:7px; background:var(--card-gradient); padding:5px; object-fit:contain; transition: box-shadow 0.15s, transform 0.11s;}
+    .contact-info { color: var(--text-head); font-weight:800; letter-spacing:0.025em; font-size:1.07rem;}
+    .contact-method:hover .contact-info { color: var(--google-blue); }
+    .footer { text-align: center; color: var(--google-blue); background: #f2f3f6; border-radius: 9px; width:91vw; margin:2.4rem auto 0 auto; padding:1rem 0; font-size:1rem; }
+    @media (max-width:1100px) { .about-split,.skills-icons,.certifications-row,.timeline-years{flex-direction:column;} .about-photo-side{margin-bottom:1.2rem;} }
+    @media (max-width:700px) { .profile-photo-wrapper{width:110px;height:110px;} .about-text-side{padding:1.0rem 0.2rem;} .section h2{padding-top:1.0rem;} .timeline-year-group{margin-left:12px;}
+      .skills-icons img{width:54px;height:54px;}
+      .cert-card img{width:54px;height:54px;}
+      .contact-icon{width:26px;height:26px;}
+      #welcome-section{padding-top: 62px;}
+    }
   </style>
 </head>
 <body>
@@ -308,10 +263,11 @@
       <span class="google-color-b">u</span>
       <span class="google-color-g">d</span>
       <span class="google-color-y">i</span>
-      <span class="google-dot"></span>
+      <span class="google-dot" style="background:var(--google-red);"></span>
     </span>
     <span class="splash-blurb">Hi, Welcome to Akhil Badampudi's Website</span>
   </div>
+
   <!-- NAVIGATION -->
   <nav class="nav" id="nav">
     <a href="#welcome-section" class="active">Welcome</a>
@@ -322,10 +278,11 @@
     <a href="#projects">Projects</a>
     <a href="#contact-section">Contact</a>
   </nav>
-  <!-- WELCOME SECTION: FULL BLEED, NO CONTAINER, ETL ANIMATION -->
+
+  <!-- WELCOME SECTION is the first and full viewport! -->
   <section id="welcome-section">
-    <div class="welcome-hero">
-      <div class="hero-name">
+    <div class="welcome-note">
+      <div>
         <span class="google-color-b">A</span>
         <span class="google-color-r">k</span>
         <span class="google-color-y">h</span>
@@ -341,71 +298,19 @@
         <span class="google-color-b">u</span>
         <span class="google-color-g">d</span>
         <span class="google-color-y">i</span>
-        <span class="google-dot"></span>
+        <span class="google-dot" style="background:var(--google-red);"></span>
       </div>
       <div class="welcome-blurb">
         Hi, Welcome to Akhil Badampudi's Website
-      </div>
-      <!-- ETL Data Processing Animation -->
-      <div class="etl-visual" aria-label="ETL animation, simulated">
-        <div class="etl-stage">
-          <div class="etl-icon">
-            <svg viewBox="0 0 64 64" width="100%" height="100%">
-              <ellipse cx="32" cy="42" rx="26" ry="15" fill="#fff" stroke="#EA4335" stroke-width="5"/>
-              <rect x="6" y="14" width="52" height="28" fill="#fff" stroke="#EA4335" stroke-width="5" rx="17"/>
-              <ellipse cx="32" cy="14" rx="26" ry="15" fill="#fff" stroke="#EA4335" stroke-width="5"/>
-            </svg>
-          </div>
-          <div class="etl-label" style="color: var(--google-red)">Extract</div>
-        </div>
-        <div class="etl-arrow">
-          <svg viewBox="0 0 90 40">
-            <polyline points="6 20, 80 20" stroke-linecap="round" />
-            <polygon points="80,20 65,13 65,27" fill="var(--google-yellow)"/>
-          </svg>
-        </div>
-        <div class="etl-stage">
-          <div class="etl-icon">
-            <svg viewBox="0 0 70 60" width="100%" height="100%">
-              <ellipse cx="24" cy="46" rx="18" ry="8" fill="#fff" stroke="#FBBC05" stroke-width="4"/>
-              <ellipse cx="40" cy="44" rx="15" ry="13" fill="#fff" stroke="#FBBC05" stroke-width="4"/>
-              <ellipse cx="55" cy="51" rx="12" ry="7" fill="#fff" stroke="#FBBC05" stroke-width="2.7"/>
-              <ellipse cx="51" cy="30" rx="10" ry="9" fill="#fff" stroke="#FBBC05" stroke-width="2.7"/>
-            </svg>
-          </div>
-          <div class="etl-label" style="color:var(--google-yellow)">Transform</div>
-        </div>
-        <div class="etl-arrow">
-          <svg viewBox="0 0 90 40">
-            <polyline points="6 20, 80 20" stroke-linecap="round" />
-            <polygon points="80,20 65,13 65,27" fill="var(--google-green)"/>
-          </svg>
-        </div>
-        <div class="etl-stage">
-          <div class="etl-icon">
-            <svg viewBox="0 0 64 64" width="100%" height="100%">
-              <ellipse cx="32" cy="55" rx="26" ry="9" fill="#fff" stroke="#34A853" stroke-width="5"/>
-              <rect x="6" y="16" width="52" height="39" fill="#fff" stroke="#34A853" stroke-width="5" rx="15"/>
-              <ellipse cx="32" cy="16" rx="26" ry="9" fill="#fff" stroke="#34A853" stroke-width="5"/>
-              <!-- mid band -->
-              <ellipse cx="32" cy="35" rx="23" ry="10.5" fill="#fff" stroke="#34A853" stroke-width="3.5" opacity="0.75"/>
-            </svg>
-          </div>
-          <div class="etl-label" style="color:var(--google-green)">Load</div>
-        </div>
-      </div>
-      <div class="etl-progress">
-        <div class="etl-dot"></div>
-        <div class="etl-dot"></div>
-        <div class="etl-dot"></div>
-        <div class="etl-dot"></div>
       </div>
     </div>
     <a id="scroll-down-arrow" href="#about" aria-label="Scroll down to About section">
       <span class="down-arrow">&#8675;</span>
     </a>
   </section>
+
   <div class="container">
+
     <!-- ABOUT SECTION -->
     <section class="about-split" id="about">
       <div class="about-photo-side">
@@ -420,8 +325,181 @@
         </p>
       </div>
     </section>
-    <!-- ...rest of your sections as in previous code (Skills, Timeline, etc.)... -->
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <h2>Skills</h2>
+      <div class="skills-icons">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt="Python" title="Python"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pandas.svg" alt="Pandas" title="Pandas"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pyspark.svg" alt="PySpark" title="PySpark"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/scikitlearn.svg" alt="scikit-learn" title="scikit-learn"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/sqlite.svg" alt="SQL" title="SQL"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg" alt="Linux" title="Linux"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftsqlserver.svg" alt="SQL Server" title="SQL Server"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg" alt="MySQL" title="MySQL"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/hive.svg" alt="Hive" title="Hive"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/hadoop.svg" alt="Hadoop" title="Hadoop"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mongodb.svg" alt="MongoDB" title="MongoDB"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apachekafka.svg" alt="Kafka" title="Kafka"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apacheairflow.svg" alt="Airflow" title="Airflow"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/databricks.svg" alt="Databricks" title="Databricks"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftazure.svg" alt="Azure" title="Azure"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonaws.svg" alt="AWS" title="AWS"/>
+        <img src="https://www.vectorlogo.zone/logos/microsoft_powerbi/microsoft_powerbi-icon.svg" alt="Power BI" title="Power BI"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tableau.svg" alt="Tableau" title="Tableau"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftexcel.svg" alt="Excel" title="Excel"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" title="GitHub"/>
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt="Git" title="Git"/>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="section timeline-section" id="timeline">
+      <h2>Timeline — Experience & Education</h2>
+      <div class="timeline-years">
+        <div class="timeline-year">
+          <div class="timeline-year-label">2025 — Present</div>
+          <div class="timeline-year-group">
+            <div class="timeline-entry">
+              <span class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/syracuseuniversity.svg" alt="Syracuse University"></span>
+              <div class="timeline-body">
+                <div class="timeline-title">Data Research Analyst</div>
+                <div class="timeline-org">Syracuse University, Syracuse, NY</div>
+                <div class="timeline-date">Feb 2025 – Present</div>
+                <ul>
+                  <li>Developing and maintaining PySpark ETL pipelines in Docker, processing 1M+ academic records for SQL Server.</li>
+                  <li>Structured data into a star schema warehouse for analytics.</li>
+                  <li>Collaborated with BI & Data Science teams to deliver tailored datasets aligned with governance.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-year">
+          <div class="timeline-year-label">2024</div>
+          <div class="timeline-year-group">
+            <div class="timeline-entry">
+              <span class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/syracuseuniversity.svg" alt="Syracuse University"></span>
+              <div class="timeline-body">
+                <div class="timeline-title">MS in Information Systems (GPA: 4.0)</div>
+                <div class="timeline-org">Syracuse University, Syracuse, NY</div>
+                <div class="timeline-date">Graduation: Dec 2024</div>
+                <div>Specialized in advanced data engineering and analytics.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-year">
+          <div class="timeline-year-label">2020 — 2023</div>
+          <div class="timeline-year-group">
+            <div class="timeline-entry">
+              <span class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ltimindtree.svg" alt="LTIMindtree"></span>
+              <div class="timeline-body">
+                <div class="timeline-title">Data Engineer</div>
+                <div class="timeline-org">LTIMindtree, Hyderabad, India</div>
+                <div class="timeline-date">Oct 2020 – Jan 2023</div>
+                <ul>
+                  <li>Architected ETL pipelines (SSIS/SSMS) to centralize data into a star schema warehouse.</li>
+                  <li>Optimized SQL transformations and data models, ensured 99% uptime, automated with Airflow.</li>
+                  <li>Reduced pipeline runtime by 42% and enabled Power BI reporting via agile delivery.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="timeline-entry">
+              <span class="timeline-dot"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/arthashastra.svg" alt="Arthashastra Intelligence"></span>
+              <div class="timeline-body">
+                <div class="timeline-title">Data Analytics Engineer</div>
+                <div class="timeline-org">Arthashastra Intelligence, Hyderabad, India</div>
+                <div class="timeline-date">Jan 2020 – Oct 2020</div>
+                <ul>
+                  <li>Automated dataset preparation and preprocessing using Pandas/NumPy in Jupyter Notebooks.</li>
+                  <li>Created visualizations with Matplotlib & Seaborn, enabled insight with statistical analysis.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="section" id="certifications">
+      <h2>Certifications</h2>
+      <div class="certifications-row">
+        <div class="cert-card">
+          <img src="https://images.credly.com/size/340x340/images/6097937a-c25a-46b8-82bc-244bfb49b6a3/Microsoft_Azure_Data_Engineer_Associate-600x600.png" alt="Azure Data Engineer">
+          <div class="cert-title">Microsoft Certified Azure Data Engineer Associate</div>
+          <div class="cert-org">Microsoft</div>
+        </div>
+        <div class="cert-card">
+          <img src="https://images.credly.com/size/340x340/images/3c887c02-cb8e-46ec-b7c7-2bf8ab5f735c/databricks-data-engineer-associate-badge.png" alt="Databricks Data Engineer">
+          <div class="cert-title">Databricks Certified Data Engineer Associate</div>
+          <div class="cert-org">Databricks</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <h2>Projects</h2>
+      <div class="projects-container">
+        <div class="project-section">
+          <div class="project-title">Healthcare Revenue Cycle Management</div>
+          <div class="project-subtitle">Project Overview</div>
+          <div class="project-desc">Improved billing cycle efficiency by deploying an Azure-based scalable ELT pipeline.</div>
+          <div class="project-subtitle">Project Details</div>
+          <div class="project-details">
+            <ul>
+              <li>Designed a robust Azure pipeline leveraging parallel processing and secure credential configuration.</li>
+              <li>Enhancing both performance and data safety in healthcare billing.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="project-section">
+          <div class="project-title">Sustainable Energy and National Growth</div>
+          <div class="project-subtitle">Project Overview</div>
+          <div class="project-desc">Built Tableau dashboards visualizing sustainable energy’s impact on economic growth for 20+ countries.</div>
+          <div class="project-subtitle">Project Details</div>
+          <div class="project-details">
+            <ul>
+              <li>Clarified how sustainable energy trends affect GDP through interactive Tableau Story reports.</li>
+              <li>Explored multi-year datasets to inform policy and research audiences.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact-section">
+      <div class="contact-heading">Contact</div>
+      <div class="contact-methods">
+        <div class="contact-method">
+          <img class="contact-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gmail.svg" alt="Email">
+          <div class="contact-info"><a href="mailto:saiakhil.badampudi@gmail.com" style="color:inherit;">saiakhil.badampudi@gmail.com</a></div>
+        </div>
+        <div class="contact-method">
+          <img class="contact-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg" alt="LinkedIn">
+          <div class="contact-info"><a href="https://www.linkedin.com/in/ss-akhil-badampudi/" target="_blank" style="color:inherit;">LinkedIn</a></div>
+        </div>
+        <div class="contact-method">
+          <img class="contact-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub">
+          <div class="contact-info"><a href="https://github.com/ramavenkatsai" target="_blank" style="color:inherit;">GitHub</a></div>
+        </div>
+        <div class="contact-method">
+          <img class="contact-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/phone.svg" alt="Phone">
+          <div class="contact-info">+1 (315) 952 9764</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      &copy; 2025 Akhil Badampudi. Hosted on GitHub Pages.<br>
+      Certified Azure & Databricks Data Engineer Associate.
+    </div>
   </div>
+
   <script>
     setTimeout(function() {
       document.getElementById('splash').style.display = 'none';
@@ -441,13 +519,6 @@
         }
       });
     });
-
-    // Down arrow smooth scroll (optional for mobile)
-    document.getElementById("scroll-down-arrow").onclick = function(e) {
-      e.preventDefault();
-      const about = document.getElementById("about");
-      if (about) about.scrollIntoView({behavior: "smooth"});
-    };
   </script>
 </body>
 </html>

@@ -39,30 +39,6 @@
       100%{opacity:1; transform:scale(1);}
     }
 
-    /* Persistent Welcome Note */
-    .welcome-note-wrapper {
-      width:100%;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      margin-top:2.1rem;
-      margin-bottom: -2.1rem; /* Align with section spacing */
-    }
-    .welcome-note {
-      font-size:2rem;
-      font-weight:900;
-      color:var(--primary);
-      text-align:center;
-      background: var(--accent);
-      border-radius: 18px;
-      box-shadow: 0 4px 24px #61a2ff44;
-      padding:1.15em 2em;
-      letter-spacing:0.03em;
-      margin-bottom: 0.5rem;
-      width:100%;
-      max-width:950px;
-    }
-
     .nav { position: fixed; width:100vw; top:0; left:0; background:var(--accent);
       display:flex; justify-content: center; align-items:center; gap:2.2rem; height:60px; z-index:120;
       box-shadow: 0 2px 14px #090a1844;}
@@ -171,14 +147,6 @@
     <a href="#contact-section">Contact</a>
   </nav>
   <div class="container">
-
-    <!-- PERSISTENT WELCOME NOTE -->
-    <div id="welcome-note-placement" class="welcome-note-wrapper" style="display:none;">
-      <div class="welcome-note" id="persistent-welcome-note">
-        Hi, Welcome to Akhil Badampudi's Website
-      </div>
-    </div>
-
     <!-- ABOUT SECTION -->
     <section class="about-split" id="about">
       <div class="about-photo-side">
@@ -368,14 +336,11 @@
     </div>
   </div>
   <script>
-    // Splash removal and persisting welcome note
+    // Splash removal
     setTimeout(function() {
       document.getElementById('splash').style.display = 'none';
       document.body.style.overflowY="auto";
-      // Show the welcome note above About section
-      document.getElementById('welcome-note-placement').style.display = 'flex';
     }, 3400);
-
     // Navigation highlighting
     const navLinks = document.querySelectorAll('.nav a');
     window.addEventListener('scroll', () => {
